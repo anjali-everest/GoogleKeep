@@ -32,4 +32,9 @@ const deleteNote = async (noteId) => {
     }
 };
 
-export {getNotes, addNote, updateNote, deleteNote};
+export {
+    getNotes,
+    addNote,
+    updateNote,
+    deleteNote
+};

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import MainSection from "./MainSection";
+import React, { Component } from 'react';
 import Header from "./Header";
 
 class Dashboard extends Component {
@@ -11,8 +10,7 @@ class Dashboard extends Component {
     render() {
         return (
             <>
-                <Header/>
-                <MainSection/>
+                <Header />
             </>
         )
     }
