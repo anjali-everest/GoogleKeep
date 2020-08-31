@@ -18,7 +18,6 @@ export const NotesList = () => {
   if (noteStatus === 'loading') {
     content = <div className="loader">Loading...</div>
   } else if (noteStatus === 'succeeded') {
-    console.log(notes)
     content = notes.notes.map(note => (
       <article className="note-excerpt" key={note.id}>
         <h3>{note.title}</h3>

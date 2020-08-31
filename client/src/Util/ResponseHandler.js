@@ -9,7 +9,7 @@ export default class ResponseHandler {
     static getResponse(response) {
         if (response.status === undefined) {
             this.setError(response.message);
-        } else if (response.status === 200 && response.data.status === "success") {
+        } else if ((response.status === 200 || response.status === 201) && response.data.status === "success") {
             if (response.data.data !== undefined) {
                 this.setSuccess(response.data.message, response.data.data);
             } else {
