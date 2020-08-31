@@ -5,7 +5,7 @@ import React from "react";
 const Header = () => {
     return (
         <nav className="header">
-            <img src={keepIcon} className={"keepIcon"} />
+            <img src={keepIcon} alt='Keep-Logo' className={"keepIcon"} />
             <h2>{KEEP}</h2>
         </nav>
     );
