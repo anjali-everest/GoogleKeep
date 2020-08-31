@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from "./Header.jsx";
+import MainSection from "./MainSection"
 
 class Dashboard extends Component {
     constructor() {
@@ -11,6 +12,7 @@ class Dashboard extends Component {
         return (
             <>
                 <Header />
+                <MainSection />
             </>
         )
     }
