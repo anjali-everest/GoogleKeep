@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchNotes, updateIsEditingNote, updateEditingNoteId, deleteOneNote, updateDeletingNoteId } from "./notesSlice"
+import { fetchNotes, updateIsEditingNote, updateEditingNoteId, deleteOneNote, updateDeletingNoteId, selectAllNotes, selectApiStatus, selectApiError } from "./notesSlice"
 import optionsIcon from "./../../../styles/optionsIcon.jpeg"
 
 
 export const NotesList = () => {
   const dispatch = useDispatch()
-  const notes = useSelector(state => state.notes)
-  const noteStatus = useSelector(state => state.notes.status)
-  const error = useSelector(state => state.notes.error)
+  const notes = useSelector(selectAllNotes)
+  const noteStatus = useSelector(selectApiStatus)
+  const error = useSelector(selectApiError)
   const [option, setOption] = useState(false)
 
   const onOptionsClicked = () => setOption(!option)

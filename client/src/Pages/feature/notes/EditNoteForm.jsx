@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
-import { updateOneNote, updateIsEditingNote, fetchNotes } from "./notesSlice";
+import { updateOneNote, updateIsEditingNote, fetchNotes } from "./notesSlice"
+import { selectEditingNoteId, selectNoteById } from "../notes/notesSlice"
 
 export const EditNoteForm = () => {
-    const noteId = useSelector(state => state.notes.editingNoteId)
-    const note = useSelector(state => state.notes.notes.find(note => note.id === parseInt(noteId)))
+    const noteId = useSelector(selectEditingNoteId)
+    const note = useSelector(state => selectNoteById(state, parseInt(noteId)))
 
     const dispatch = useDispatch()
 

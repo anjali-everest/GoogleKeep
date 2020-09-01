@@ -5,9 +5,10 @@ import {
 } from './feature/notes/NotesList';
 import { AddNoteForm } from "./feature/notes/AddNoteForm";
 import { EditNoteForm } from "./feature/notes/EditNoteForm";
+import { selectIsEditingNote } from "./feature/notes/notesSlice"
 
 const MainSection = () => {
-    const isEditingNote = useSelector(state => state.notes.isEditingNote)
+    const isEditingNote = useSelector(selectIsEditingNote)
 
     return (
         <>
