@@ -5,7 +5,8 @@ import {
 import {
     getNotes,
     addNote,
-    updateNote
+    updateNote,
+    deleteNote
 } from "../../../Util/ApiHandler"
 import ResponseHandler from "./../../../Util/ResponseHandler"
 
@@ -13,8 +14,9 @@ const initialState = {
     notes: [],
     status: 'idle',
     error: null,
-    editingNoteId: true,
-    isEditingNote: false
+    editingNoteId: null,
+    isEditingNote: false,
+    deletingNoteId: null
 }
 
 export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
@@ -32,6 +34,11 @@ export const updateOneNote = createAsyncThunk('notes/updateNote', async updatedN
     return updateNoteResponse.data
 })
 
+export const deleteOneNote = createAsyncThunk('notes/deleteNote', async noteId => {
+    const deleteNoteResponse = ResponseHandler.getResponse(await deleteNote(noteId))
+    return deleteNoteResponse.data
+})
+
 const notesSlice = createSlice({
     name: 'notes',
     initialState,
@@ -41,6 +48,9 @@ const notesSlice = createSlice({
         },
         updateEditingNoteId(state, action) {
             state.editingNoteId = action.payload
+        },
+        updateDeletingNoteId(state, action) {
+            state.deletingNoteId = action.payload
         }
     },
     extraReducers: {
@@ -69,13 +79,20 @@ const notesSlice = createSlice({
                 existingNote.title = title
                 existingNote.content = content
             }
+        },
+        [deleteOneNote.fulfilled]: (state, action) => {
+            var index = state.notes.map(note => {
+                return note.Id;
+            }).indexOf(action.payload);
+            state.notes.splice(index, 1);
         }
     }
 })
 
 export const {
     updateIsEditingNote,
-    updateEditingNoteId
+    updateEditingNoteId,
+    updateDeletingNoteId
 } = notesSlice.actions
 
 export default notesSlice.reducer

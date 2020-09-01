@@ -55,3 +55,8 @@ section h1 {
 p.note-content {
     margin-top: 10px;
 }
+
+.optionsIcon {
+    height: 20px;
+    width: 20px;
+}
