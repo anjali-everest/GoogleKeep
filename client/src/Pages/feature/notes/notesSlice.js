@@ -4,14 +4,17 @@ import {
 } from '@reduxjs/toolkit'
 import {
     getNotes,
-    addNote
+    addNote,
+    updateNote
 } from "../../../Util/ApiHandler"
 import ResponseHandler from "./../../../Util/ResponseHandler"
 
 const initialState = {
     notes: [],
     status: 'idle',
-    error: null
+    error: null,
+    editingNoteId: true,
+    isEditingNote: false
 }
 
 export const fetchNotes = createAsyncThunk('notes/fetchNotes', async () => {
@@ -24,17 +27,29 @@ export const addNewNote = createAsyncThunk('notes/addNewNote', async initialNote
     return addNoteResponse.data
 })
 
+export const updateOneNote = createAsyncThunk('notes/updateNote', async updatedNote => {
+    const updateNoteResponse = ResponseHandler.getResponse(await updateNote(updatedNote))
+    return updateNoteResponse.data
+})
+
 const notesSlice = createSlice({
     name: 'notes',
     initialState,
-    reducers: {},
+    reducers: {
+        updateIsEditingNote(state, action) {
+            state.isEditingNote = !state.isEditingNote
+        },
+        updateEditingNoteId(state, action) {
+            state.editingNoteId = action.payload
+        }
+    },
     extraReducers: {
         [fetchNotes.pending]: (state, action) => {
             state.status = 'loading'
         },
         [fetchNotes.fulfilled]: (state, action) => {
             state.status = 'succeeded'
-            state.notes = state.notes.concat(action.payload)
+            state.notes = action.payload
         },
         [fetchNotes.rejected]: (state, action) => {
             state.status = 'failed'
@@ -42,8 +57,25 @@ const notesSlice = createSlice({
         },
         [addNewNote.fulfilled]: (state, action) => {
             state.notes.push(action.payload)
+        },
+        [updateOneNote.fulfilled]: (state, action) => {
+            const {
+                id,
+                title,
+                content
+            } = action.payload
+            const existingNote = state.notes.find(note => note.id === parseInt(id))
+            if (existingNote) {
+                existingNote.title = title
+                existingNote.content = content
+            }
         }
     }
 })
+
+export const {
+    updateIsEditingNote,
+    updateEditingNoteId
+} = notesSlice.actions
 
 export default notesSlice.reducer

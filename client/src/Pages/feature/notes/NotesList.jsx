@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchNotes } from "./notesSlice"
+import { fetchNotes, updateIsEditingNote, updateEditingNoteId } from "./notesSlice"
 
 export const NotesList = () => {
   const dispatch = useDispatch()
@@ -14,15 +14,22 @@ export const NotesList = () => {
     }
   }, [noteStatus, dispatch])
 
+  const handleNoteClick = (e) => {
+    dispatch(updateIsEditingNote())
+    dispatch(updateEditingNoteId(e.target.id))
+  }
+
   let content
   if (noteStatus === 'loading') {
     content = <div className="loader">Loading...</div>
   } else if (noteStatus === 'succeeded') {
-    content = notes.notes.map(note => (
-      <article className="note-excerpt" key={note.id}>
-        <h3>{note.title}</h3>
-        <p>{note.content.substring(0, 100)}</p>
-      </article>
+    content = notes.notes && notes.notes.length !== 0 && notes.notes.map(note => (
+      <div id={note.id} key={note.id}>
+        <article className="note-excerpt" key={note.id} id={note.id} onClick={handleNoteClick}>
+          <h3 id={note.id}>{note.title}</h3>
+          <p id={note.id}>{note.content.substring(0, 100)}</p>
+        </article>
+      </div>
     ))
   } else if (noteStatus === 'failed') {
     content = <div>{error}</div>
