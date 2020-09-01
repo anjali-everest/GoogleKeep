@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux"
-import { addNewNote } from "./notesSlice"
+import { addNewNote } from "./ThunkHandler"
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch()

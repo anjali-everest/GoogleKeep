@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchNotes, updateIsEditingNote, updateEditingNoteId, deleteOneNote, updateDeletingNoteId, selectAllNotes, selectApiStatus, selectApiError } from "./notesSlice"
+import { updateIsEditingNote, updateEditingNoteId, updateDeletingNoteId, selectAllNotes, selectApiStatus, selectApiError } from "./notesSlice"
+import { fetchNotes, deleteOneNote } from "./ThunkHandler"
 import optionsIcon from "./../../../styles/optionsIcon.jpeg"
 
 

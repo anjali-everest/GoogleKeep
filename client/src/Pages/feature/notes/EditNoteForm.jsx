@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
-import { updateOneNote, updateIsEditingNote, fetchNotes } from "./notesSlice"
-import { selectEditingNoteId, selectNoteById } from "../notes/notesSlice"
+import { updateIsEditingNote, selectEditingNoteId, selectNoteById } from "./notesSlice"
+import { fetchNotes, updateOneNote } from "./ThunkHandler"
 
 export const EditNoteForm = () => {
     const noteId = useSelector(selectEditingNoteId)
