@@ -7,15 +7,17 @@ import {
     updateOneNote,
     deleteOneNote
 } from "./ThunkHandler"
-
-const initialState = {
-    notes: [],
-    status: 'idle',
-    error: null,
-    editingNoteId: null,
-    isEditingNote: false,
-    deletingNoteId: null
-}
+import {
+    addNote,
+    updateStatusPending,
+    updateAllNotes,
+    updateStatusFailed,
+    updateNote,
+    deleteNote
+} from "./notesActions"
+import {
+    initialState
+} from "./noteInitialState"
 
 const notesSlice = createSlice({
     name: 'notes',
@@ -32,38 +34,12 @@ const notesSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchNotes.pending]: (state, action) => {
-            state.status = 'loading'
-        },
-        [fetchNotes.fulfilled]: (state, action) => {
-            state.status = 'succeeded'
-            state.notes = action.payload
-        },
-        [fetchNotes.rejected]: (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message
-        },
-        [addNewNote.fulfilled]: (state, action) => {
-            state.notes.push(action.payload)
-        },
-        [updateOneNote.fulfilled]: (state, action) => {
-            const {
-                id,
-                title,
-                content
-            } = action.payload
-            const existingNote = state.notes.find(note => note.id === parseInt(id))
-            if (existingNote) {
-                existingNote.title = title
-                existingNote.content = content
-            }
-        },
-        [deleteOneNote.fulfilled]: (state, action) => {
-            var index = state.notes.map(note => {
-                return note.Id;
-            }).indexOf(action.payload);
-            state.notes.splice(index, 1);
-        }
+        [fetchNotes.pending]: updateStatusPending,
+        [fetchNotes.fulfilled]: updateAllNotes,
+        [fetchNotes.rejected]: updateStatusFailed,
+        [addNewNote.fulfilled]: addNote,
+        [updateOneNote.fulfilled]: updateNote,
+        [deleteOneNote.fulfilled]: deleteNote
     }
 })
 
@@ -73,7 +49,6 @@ export const selectAllNotes = state => state.notes
 export const selectNoteById = (state, id) => state.notes.notes.find(note => note.id === id)
 export const selectApiStatus = state => state.notes.status
 export const selectApiError = status => status.notes.error
-
 
 export const {
     updateIsEditingNote,
