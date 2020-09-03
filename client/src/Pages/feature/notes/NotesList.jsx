@@ -17,8 +17,7 @@ export const NotesList = () => {
   }, [noteStatus, dispatch])
 
   return (
-    <section>
-      <h2>Notes</h2>
+    <section className="notes-list">
       {noteStatus === 'loading' && <div className="loader">Loading...</div>}
       {noteStatus === 'succeeded' && notes.notes && notes.notes.length !== 0 && notes.notes.map(note => (
         <Note note={note} />

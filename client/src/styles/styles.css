@@ -1,17 +1,23 @@
+body {
+    margin: 0
+}
+
 .header {
-    height: 8vh;
+    height: 70px;
     opacity: 0.7;
     box-sizing: border-box;
     width: 100%;
     border-bottom: outset;
     box-shadow: 0 8px 5px -5px #888888;
     border-width: thin;
+    display: flex;
+    align-items: center;
+    padding: 20px;
 }
 
 .header-icon {
-    width: 40px;
-    height: 40px;
-    float: left;
+    width: 50px;
+    height: 50px;
 }
 
 .header-title {
@@ -19,11 +25,9 @@
     text-align: center;
     opacity: 1;
     font-family: 'Product Sans', Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
-    font-size: 22px;
-    margin: 0.5% 0% 0% 0.5%;
-    float: left;
+    font-size: 30px;
 }
 
 h2 {
@@ -42,17 +46,9 @@ h2 {
     margin-top: 2%;
 }
 
-section {
-    max-width: 800px;
-    padding: 0 1.5rem;
-}
-
-section h1 {
-    font-size: 3rem;
-}
-
 /*Add Note Form*/
 .add-note-form {
+    margin: 5%;
     width: 40%;
     border: solid transparent;
     border-width: 2px 1px 1px 6px;
@@ -61,7 +57,7 @@ section h1 {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.note-title {
+.add-note-form .note-title {
     margin: 10px 10px 10px 10px;
     border: none;
     width: 95%;
@@ -71,7 +67,7 @@ section h1 {
     font-weight: 500;
 }
 
-.note-title:focus,
+.add-note-form .note-title:focus,
 .textarea {
     outline: none
 }
@@ -115,6 +111,17 @@ p strong {
 }
 
 /* Notes list */
+.notes-list {
+    margin: 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note-body {
+    float: left;
+    width: 33%;
+}
+
 .note h2 {
     font-size: 2.5rem;
     margin-bottom: 5px;
@@ -125,22 +132,50 @@ p strong {
     border: 1px solid rgb(177, 174, 174);
     border-radius: 7px;
     margin: 8px;
+    width: 300px;
+    height: 200px;
+}
+
+.note-excerpt:hover {
+    box-shadow: 0 0 10px rgb(177, 174, 174);
 }
 
 .notes-list .note-excerpt+.note-excerpt {
     margin-top: 0.5rem;
 }
 
-.note-excerpt h3 {
+.note-excerpt .note-title {
+    padding: 5%;
     margin: 0;
+    letter-spacing: .00625em;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
     font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.5rem;
 }
 
-p.note-content {
-    margin-top: 10px;
+.note-excerpt .note-content {
+    height: 55%;
+    padding-left: 5%;
+    margin: 0px;
+    font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1rem;
+    overflow-wrap: break-word;
+    padding-right: 5%;
 }
 
-.optionsIcon {
+.note-excerpt .optionsIcon {
     height: 20px;
     width: 20px;
+    position: relative;
+    float: right;
+}
+
+.note-excerpt .note-delete-icon {
+    width: 8%;
+    float: right;
+    padding-right: 2%;
 }

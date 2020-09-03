@@ -2,34 +2,31 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateIsEditingNote, updateEditingNoteId, updateDeletingNoteId } from "./notesSlice"
 import { deleteOneNote } from "./ThunkHandler"
-import optionsIcon from "./../../../styles/optionsIcon.jpeg"
+import deleteIcon from "../../../styles/deleteIcon.png"
 
 export const Note = (props) => {
     const { note } = props
     const dispatch = useDispatch()
 
-    const [option, setOption] = useState(false)
+    const [showOptions, setShowOptions] = useState(false)
 
+    const onMouseEntered = () => { setShowOptions(!showOptions) }
+    const onMouseLeft = () => { setShowOptions(!showOptions) }
     const onNoteClicked = (e) => {
         dispatch(updateIsEditingNote())
         dispatch(updateEditingNoteId(e.target.id))
     }
-    const onOptionsClicked = () => setOption(!option)
     const onDeleteNoteClicked = (e) => {
+        e.stopPropagation()
         dispatch(updateDeletingNoteId(e.target.id))
         dispatch(deleteOneNote(e.target.id))
     }
 
     return (
-        note && note.title && note.content && <div id={note.id} key={note.id}>
-            <article className="note-excerpt" key={note.id} id={note.id} onClick={onNoteClicked}>
-                <h3 id={note.id}>{note.title}</h3>
-                <p id={note.id}>{note.content.substring(0, 100)}</p>
-            </article>
-            <img src={optionsIcon} className="optionsIcon" alt="noteOptions" onClick={onOptionsClicked} />
-            {option && <div>
-                <button id={note.id} onClick={onDeleteNoteClicked}>Delete</button>
-            </div>}
+        note && note.title && note.content && <div id={note.id} key={note.id} className="note-body" onMouseEnter={onMouseEntered} onMouseLeave={onMouseLeft} className="note-excerpt" key={note.id} id={note.id} onClick={onNoteClicked}>
+            <p id={note.id} className="note-title">{note.title}</p>
+            <p id={note.id} className="note-content">{note.content.substring(0, 100)}</p>
+            <img hidden={!showOptions} src={deleteIcon} alt="deleteIcon" className="note-delete-icon" onClick={onDeleteNoteClicked} />
         </div>
     )
 }
