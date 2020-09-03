@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch } from "react-redux"
 import { addNewNote } from "./ThunkHandler"
+import ResizableTextarea from '../../ResizableTextArea'
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch()
+  const [openForm, setOpenForm] = useState(false)
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
+  const onContentClicked = e => setOpenForm(true)
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
   const onSaveNoteClicked = () => {
@@ -24,26 +27,23 @@ export const AddNoteForm = () => {
   }
 
   return (
-    <section>
-      <h2>Add a New Note</h2>
-      <form>
-        <label htmlFor="noteTitle">Note Title:</label>
+    <div className="add-note-form">
+      {openForm &&
         <input
           type="text"
           id="noteTitle"
           name="noteTitle"
+          className="note-title"
           value={title}
+          placeholder="Title"
           onChange={onTitleChanged}
-        />
-        <label htmlFor="noteContent">Content:</label>
-        <textarea
-          id="noteContent"
-          name="noteContent"
-          value={content}
-          onChange={onContentChanged}
-        />
-        <button type="button" onClick={onSaveNoteClicked}>Save Note</button>
-      </form>
-    </section>
+        />}
+      <ResizableTextarea placeholder="Take a note..."
+        value={content}
+        onChange={onContentChanged}
+        onClick={onContentClicked}
+      />
+      {openForm && <button type="button" className="add-note-button" onClick={onSaveNoteClicked}>Save</button>}
+    </div>
   )
 }

@@ -11,11 +11,11 @@ const MainSection = () => {
     const isEditingNote = useSelector(selectIsEditingNote)
 
     return (
-        <>
+        <div className="main-section">
             <AddNoteForm />
             <NotesList />
             {isEditingNote && <EditNoteForm />}
-        </>
+        </div>
     )
 }
 
