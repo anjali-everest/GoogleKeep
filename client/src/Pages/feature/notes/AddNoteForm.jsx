@@ -28,22 +28,22 @@ export const AddNoteForm = () => {
 
   return (
     <div className="add-note-form">
-      {openForm &&
-        <input
-          type="text"
-          id="noteTitle"
-          name="noteTitle"
-          className="note-title"
-          value={title}
-          placeholder="Title"
-          onChange={onTitleChanged}
-        />}
+      <input
+        type="text"
+        id="noteTitle"
+        name="noteTitle"
+        className="note-title"
+        hidden={!openForm}
+        value={title}
+        placeholder="Title"
+        onChange={onTitleChanged}
+      />
       <ResizableTextarea placeholder="Take a note..."
         value={content}
         onChange={onContentChanged}
         onClick={onContentClicked}
       />
-      {openForm && <button type="button" className="add-note-button" onClick={onSaveNoteClicked}>Save</button>}
+      <button type="button" hidden={!openForm} className="add-note-button" onClick={onSaveNoteClicked}>Save</button>
     </div>
   )
 }

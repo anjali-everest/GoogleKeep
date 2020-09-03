@@ -48,7 +48,7 @@ h2 {
 
 /*Add Note Form*/
 .add-note-form {
-    margin: 5%;
+    margin: 3%;
     width: 40%;
     border: solid transparent;
     border-width: 2px 1px 1px 6px;
@@ -112,7 +112,7 @@ p strong {
 
 /* Notes list */
 .notes-list {
-    margin: 5%;
+    margin: 3%;
     display: flex;
     flex-wrap: wrap;
 }
@@ -120,14 +120,6 @@ p strong {
 .note-body {
     float: left;
     width: 33%;
-}
-
-.note h2 {
-    font-size: 2.5rem;
-    margin-bottom: 5px;
-}
-
-.note-excerpt {
     padding: 0.25rem 0.25rem;
     border: 1px solid rgb(177, 174, 174);
     border-radius: 7px;
@@ -136,7 +128,12 @@ p strong {
     height: 200px;
 }
 
-.note-excerpt:hover {
+.note h2 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+}
+
+.note-body:hover {
     box-shadow: 0 0 10px rgb(177, 174, 174);
 }
 
@@ -144,7 +141,7 @@ p strong {
     margin-top: 0.5rem;
 }
 
-.note-excerpt .note-title {
+.note-body .note-title {
     padding: 5%;
     margin: 0;
     letter-spacing: .00625em;
@@ -154,7 +151,7 @@ p strong {
     line-height: 1.5rem;
 }
 
-.note-excerpt .note-content {
+.note-body .note-content {
     height: 55%;
     padding-left: 5%;
     margin: 0px;
@@ -167,14 +164,7 @@ p strong {
     padding-right: 5%;
 }
 
-.note-excerpt .optionsIcon {
-    height: 20px;
-    width: 20px;
-    position: relative;
-    float: right;
-}
-
-.note-excerpt .note-delete-icon {
+.note-body .note-delete-icon {
     width: 8%;
     float: right;
     padding-right: 2%;
