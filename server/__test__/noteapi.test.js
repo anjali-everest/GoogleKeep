@@ -49,7 +49,10 @@ describe('Test the File endpoints', () => {
 
     describe("Testing the addNote API", () => {
         it("should get response with 201 when called addNote with note", async () => {
-            const newNote = {title: 'title', content: 'content'};
+            const newNote = {
+                title: 'title',
+                content: 'content'
+            };
             const res = await request(app).post('/notes').send(newNote);
             expect(res.status).toEqual(201);
             expect(res.body.message).toEqual("Note created!");
@@ -64,9 +67,17 @@ describe('Test the File endpoints', () => {
 
     describe("Testing the updateNote API", () => {
         it("should get response with 200 when called updateNote with note", async () => {
-            const newNote = {id: 1, title: 'title', content: 'content'};
+            const newNote = {
+                id: 1,
+                title: 'title',
+                content: 'content'
+            };
             await pool.query(`INSERT INTO notes(id,title,content) VALUES('${newNote.id}','${newNote.title}','${newNote.content}')`).then(async () => {
-                const noteToUpdate = {id: 1, title: 'updateTitle', content: 'updateContent'};
+                const noteToUpdate = {
+                    id: 1,
+                    title: 'updateTitle',
+                    content: 'updateContent'
+                };
                 const res = await request(app).put('/notes/1').send(noteToUpdate);
                 expect(res.statusCode).toEqual(200);
                 expect(res.body.message).toEqual("Note updated!");
@@ -74,14 +85,22 @@ describe('Test the File endpoints', () => {
         });
 
         it("should get response with 404 when called updateNote with id which does not exist in notes", async () => {
-            const noteToUpdate = {id: 1, title: 'updateTitle', content: 'updateContent'};
+            const noteToUpdate = {
+                id: 1,
+                title: 'updateTitle',
+                content: 'updateContent'
+            };
             const res = await request(app).put('/notes/1').send(noteToUpdate);
             expect(res.statusCode).toEqual(404);
             expect(res.body.message).toEqual("Note not found with id: 1");
         });
 
         it("should get response with 404 when called updateNote with invalid note id as param", async () => {
-            const noteToUpdate = {id: 'A', title: 'updateTitle', content: 'updateContent'};
+            const noteToUpdate = {
+                id: 'A',
+                title: 'updateTitle',
+                content: 'updateContent'
+            };
             const res = await request(app).put('/notes/A').send(noteToUpdate);
             expect(res.statusCode).toEqual(400);
             expect(res.body.message).toEqual("Invalid note ID!");
@@ -90,7 +109,11 @@ describe('Test the File endpoints', () => {
 
     describe("Testing the deleteNote API", () => {
         it("should get response with 200 when called deletedNote with note id", async () => {
-            const newNote = {id: 1, title: 'title', content: 'content'};
+            const newNote = {
+                id: 1,
+                title: 'title',
+                content: 'content'
+            };
             await pool.query(`INSERT INTO notes(id,title,content) VALUES('${newNote.id}','${newNote.title}','${newNote.content}')`).then(async () => {
                 const res = await request(app).delete('/notes/1');
                 expect(res.statusCode).toEqual(200);

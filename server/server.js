@@ -1,5 +1,11 @@
 import express from 'express';
-import {getAllNotes, getOneNote, addNote, updateNote, deleteNote} from './api/controller/notecontroller';
+import {
+    getAllNotes,
+    getOneNote,
+    addNote,
+    updateNote,
+    deleteNote
+} from './api/controller/notecontroller';
 import cors from 'cors';
 
 const app = express();

@@ -1,249 +1,249 @@
 body {
-    margin: 0
+  margin: 0;
 }
 
 .header {
-    height: 70px;
-    opacity: 0.7;
-    box-sizing: border-box;
-    width: 100%;
-    border-bottom: outset;
-    box-shadow: 0 8px 5px -5px #888888;
-    border-width: thin;
-    display: flex;
-    align-items: center;
-    padding: 20px;
+  height: 70px;
+  opacity: 0.7;
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: outset;
+  box-shadow: 0 8px 5px -5px #888888;
+  border-width: thin;
+  display: flex;
+  align-items: center;
+  padding: 20px;
 }
 
 .header-icon {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .header-title {
-    color: #2f2f30;
-    text-align: center;
-    opacity: 1;
-    font-family: 'Product Sans', Arial, sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 30px;
+  color: #2f2f30;
+  text-align: center;
+  opacity: 1;
+  font-family: "Product Sans", Arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 30px;
 }
 
 h2 {
-    color: #2f2f30;
-    text-align: center;
-    opacity: 1;
-    font-family: 'Product Sans', Arial, sans-serif;
-    font-size: 22px;
-    display: inline;
+  color: #2f2f30;
+  text-align: center;
+  opacity: 1;
+  font-family: "Product Sans", Arial, sans-serif;
+  font-size: 22px;
+  display: inline;
 }
 
 /* Main Section */
 .main-section {
-    width: 100%;
-    height: 100%;
-    margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
 }
 
 /*Add Note Form*/
 .add-note-form {
-    margin: 50px;
-    width: 40%;
-    border: solid transparent;
-    border-width: 2px 1px 1px 6px;
-    border-radius: 8px;
-    transition-duration: .218s;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 50px;
+  width: 40%;
+  border: solid transparent;
+  border-width: 2px 1px 1px 6px;
+  border-radius: 8px;
+  transition-duration: 0.218s;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .add-note-form .note-title {
-    margin: 10px 10px 10px 10px;
-    border: none;
-    width: 95%;
-    letter-spacing: .00625em;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 1.2rem;
-    font-weight: 500;
+  margin: 10px 10px 10px 10px;
+  border: none;
+  width: 95%;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .add-note-form .note-title:focus,
 .textarea {
-    outline: none
+  outline: none;
 }
 
 p strong {
-    display: block;
+  display: block;
 }
 
 .textarea {
-    resize: none;
-    overflow: hidden;
-    height: auto;
-    font-style: bold;
-    width: 95%;
-    border: none;
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin: 8px;
+  resize: none;
+  overflow: hidden;
+  height: auto;
+  font-style: bold;
+  width: 95%;
+  border: none;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 8px;
 }
 
 .textarea ::placeholder {
-    color: gainsboro
+  color: gainsboro;
 }
 
 .add-note-button {
-    color: rgb(37, 37, 37);
-    letter-spacing: .01785714em;
-    font-size: .875rem;
-    font-weight: bold;
-    padding: 8px 24px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: none;
-    background: white;
-    left: 480px;
-    position: relative;
-    outline: none;
+  color: rgb(37, 37, 37);
+  letter-spacing: 0.01785714em;
+  font-size: 0.875rem;
+  font-weight: bold;
+  padding: 8px 24px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: none;
+  background: white;
+  left: 480px;
+  position: relative;
+  outline: none;
 }
 
 .add-note-button:hover {
-    background: lightgray;
+  background: lightgray;
 }
 
 /* Notes list */
 .notes-list {
-    margin: 40px;
-    display: flex;
-    flex-wrap: wrap;
+  margin: 40px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .note-body {
-    float: left;
-    width: 33%;
-    padding: 0.25rem 0.25rem;
-    border: 1px solid rgb(177, 174, 174);
-    border-radius: 7px;
-    margin: 8px;
-    width: 300px;
-    height: 200px;
+  float: left;
+  width: 33%;
+  padding: 0.25rem 0.25rem;
+  border: 1px solid rgb(177, 174, 174);
+  border-radius: 7px;
+  margin: 8px;
+  width: 300px;
+  height: 200px;
 }
 
 .note h2 {
-    font-size: 2.5rem;
-    margin-bottom: 5px;
+  font-size: 2.5rem;
+  margin-bottom: 5px;
 }
 
 .note-body:hover {
-    box-shadow: 0 0 10px rgb(177, 174, 174);
+  box-shadow: 0 0 10px rgb(177, 174, 174);
 }
 
-.notes-list .note-excerpt+.note-excerpt {
-    margin-top: 0.5rem;
+.notes-list .note-excerpt + .note-excerpt {
+  margin-top: 0.5rem;
 }
 
 .note-body .note-title {
-    padding: 15px;
-    margin: 0;
-    letter-spacing: 1px;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 20px;
-    font-weight: 500;
+  padding: 15px;
+  margin: 0;
+  letter-spacing: 1px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
 }
 
 .note-body .note-content {
-    height: 55%;
-    padding-left: 15px;
-    margin: 0px;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    letter-spacing: 0;
-    overflow-wrap: break-word;
-    padding-right: 10px;
+  height: 55%;
+  padding-left: 15px;
+  margin: 0px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  overflow-wrap: break-word;
+  padding-right: 10px;
 }
 
 .note-body .note-delete-icon {
-    width: 8%;
-    float: right;
-    padding-right: 15px;
+  width: 8%;
+  float: right;
+  padding-right: 15px;
 }
 
 /*Edit Note Form */
 .edit-note-form {
-    background: rgba(229, 229, 229, 0.75);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  background: rgba(229, 229, 229, 0.75);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .model {
-    background: white;
-    border: 1px solid #ccc;
-    position: absolute;
-    opacity: 1;
-    left: 480px;
-    top: 200px;
-    border-radius: 8px;
-    width: 450px;
-    height: 250px;
-    padding: 28px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+  border: 1px solid #ccc;
+  position: absolute;
+  opacity: 1;
+  left: 480px;
+  top: 200px;
+  border-radius: 8px;
+  width: 450px;
+  height: 250px;
+  padding: 28px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .model .note-title {
-    border: none;
-    margin: 0;
-    letter-spacing: .00625em;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 28px;
-    height: 30px;
-    font-weight: 500;
-    padding-left: 10px;
-    resize: none;
-    width: 97%;
-    outline: none;
+  border: none;
+  margin: 0;
+  letter-spacing: 0.00625em;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 28px;
+  height: 30px;
+  font-weight: 500;
+  padding-left: 10px;
+  resize: none;
+  width: 97%;
+  outline: none;
 }
 
 .model .note-content {
-    height: 60%;
-    margin-top: 10px;
-    font-family: 'Google Sans', Roboto, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    overflow-wrap: break-word;
-    padding-top: 10px;
-    padding-left: 10px;
-    border: none;
-    width: 97%;
-    resize: none;
-    outline: none;
+  height: 60%;
+  margin-top: 10px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-wrap: break-word;
+  padding-top: 10px;
+  padding-left: 10px;
+  border: none;
+  width: 97%;
+  resize: none;
+  outline: none;
 }
 
 .model .note-save-button {
-    color: rgb(37, 37, 37);
-    float: right;
-    margin-top: 10px;
-    border-radius: 4px;
-    border: none;
-    width: 90px;
-    height: 35px;
-    letter-spacing: .01785714em;
-    font-size: 15px;
-    font-weight: bold;
-    background: white;
-    padding: 0;
-    outline: none;
+  color: rgb(37, 37, 37);
+  float: right;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: none;
+  width: 90px;
+  height: 35px;
+  letter-spacing: 0.01785714em;
+  font-size: 15px;
+  font-weight: bold;
+  background: white;
+  padding: 0;
+  outline: none;
 }
 
 .note-save-button:hover {
-    background: #e5e5e5;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
+  background: #e5e5e5;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 2px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .note-save-button:focus {
-    border: none
+  border: none;
 }
