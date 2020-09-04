@@ -23,17 +23,11 @@ export const EditNoteForm = () => {
     }
 
     return (
-        <div className="editNoteModel" >
-            <div>
-                <textarea
-                    value={title}
-                    onChange={onTitleChanged}
-                />
-                <textarea
-                    value={content}
-                    onChange={onContentChanged}
-                />
-                <button onClick={onSaveNoteClicked}>Save</button>
+        <div className="edit-note-form" >
+            <div className="model">
+                <textarea className="note-title" value={title} onChange={onTitleChanged} />
+                <textarea className="note-content" value={content} onChange={onContentChanged} />
+                <button className="note-save-button" onClick={onSaveNoteClicked}>Save</button>
             </div>
         </div >
     );
