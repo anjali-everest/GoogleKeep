@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewNote } from "./ThunkHandler";
-import ResizableTextarea from "../../ResizableTextArea";
+import { addNewNote } from "../thunkHandler";
+import ResizableTextarea from "../../../components/ResizableTextArea";
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch();

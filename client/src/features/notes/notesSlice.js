@@ -6,7 +6,7 @@ import {
     addNewNote,
     updateOneNote,
     deleteOneNote
-} from "./ThunkHandler"
+} from "./thunkHandler"
 import {
     addNote,
     updateStatusPending,
