@@ -1,10 +1,19 @@
 import ResponseHandler from "../util/responseHandler";
-import {getAll, getOne, insert, update, deleteOne} from "../service/noteservice";
+import {
+    getAll,
+    getOne,
+    insert,
+    update,
+    deleteOne
+} from "../service/noteservice";
 import {
     INVALID_NOTE,
-    INVALID_NOTE_ID, NOTE_CREATED, NOTE_DELETED,
+    INVALID_NOTE_ID,
+    NOTE_CREATED,
+    NOTE_DELETED,
     NOTE_NOT_FOUND_WITH_ID,
-    NOTE_RETRIEVED, NOTE_UPDATED,
+    NOTE_RETRIEVED,
+    NOTE_UPDATED,
     NOTES_NOT_FOUND,
     NOTES_RETRIEVED
 } from "../util/ServerConstants";
@@ -27,7 +36,9 @@ const getAllNotes = async (request, response) => {
 };
 
 const getOneNote = async (request, response) => {
-    const {id} = request.params;
+    const {
+        id
+    } = request.params;
     if (!Number(id)) {
         responseHandler.setError(400, INVALID_NOTE_ID);
         return responseHandler.send(response);
@@ -50,10 +61,13 @@ const addNote = async (request, response) => {
         responseHandler.setError(400, INVALID_NOTE);
         return responseHandler.send(response);
     }
-    const note = {title: request.body.title, content: request.body.content};
+    const note = {
+        title: request.body.title,
+        content: request.body.content
+    };
     try {
-        await insert(note).then(() => {
-            responseHandler.setSuccess(201, NOTE_CREATED, note);
+        await insert(note).then((res) => {
+            responseHandler.setSuccess(201, NOTE_CREATED, res[0]);
         });
         return responseHandler.send(response);
     } catch (error) {
@@ -63,7 +77,11 @@ const addNote = async (request, response) => {
 };
 
 const updateNote = async (request, response) => {
-    const note = {id: request.params.id, title: request.body.title, content: request.body.content};
+    const note = {
+        id: request.params.id,
+        title: request.body.title,
+        content: request.body.content
+    };
     if (!Number(note.id)) {
         responseHandler.setError(400, INVALID_NOTE_ID);
         return responseHandler.send(response);
@@ -82,7 +100,11 @@ const updateNote = async (request, response) => {
 };
 
 const deleteNote = async (request, response) => {
-    const note = {id: request.params.id, title: request.body.title, content: request.body.content};
+    const note = {
+        id: request.params.id,
+        title: request.body.title,
+        content: request.body.content
+    };
     if (!Number(note.id)) {
         responseHandler.setError(400, INVALID_NOTE_ID);
         return responseHandler.send(response);
@@ -100,4 +122,10 @@ const deleteNote = async (request, response) => {
     }
 };
 
-export {getAllNotes, getOneNote, addNote, updateNote, deleteNote};
+export {
+    getAllNotes,
+    getOneNote,
+    addNote,
+    updateNote,
+    deleteNote
+};

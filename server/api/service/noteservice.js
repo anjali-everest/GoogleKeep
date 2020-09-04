@@ -1,5 +1,11 @@
 import db from '../../database';
-import {DELETE_NOTE, GET_ALL_NOTES, GET_ONE_NOTE, INSERT_NOTE, UPDATE_NOTE} from "../util/ServerConstants";
+import {
+    DELETE_NOTE,
+    GET_ALL_NOTES,
+    GET_ONE_NOTE,
+    INSERT_NOTE,
+    UPDATE_NOTE
+} from "../util/ServerConstants";
 import util from 'util';
 
 const getAll = async () => {
@@ -22,7 +28,8 @@ const getOne = async (id) => {
 
 const insert = async (note) => {
     try {
-        await db.query(util.format(INSERT_NOTE, note.title, note.content));
+        const response = await db.query(util.format(INSERT_NOTE, note.title, note.content));
+        return response.rows;
     } catch (e) {
         return e;
     }
@@ -56,4 +63,10 @@ const deleteOne = async (note) => {
     }
 };
 
-export {getAll, getOne, insert, update, deleteOne};
+export {
+    getAll,
+    getOne,
+    insert,
+    update,
+    deleteOne
+};
