@@ -15,11 +15,14 @@ export const EditNoteForm = () => {
     const onTitleChanged = e => setTitle(e.target.value)
     const onContentChanged = e => setContent(e.target.value)
     const onSaveNoteClicked = () => {
-        if (title && content) {
+        if (isUpdateNeeded()) {
             dispatch(updateOneNote({ id: noteId, title, content }))
-            dispatch(updateIsEditingNote())
             dispatch(fetchNotes())
         }
+        dispatch(updateIsEditingNote())
+    }
+    const isUpdateNeeded = () => {
+        return note.title !== title || note.content !== content
     }
 
     return (
