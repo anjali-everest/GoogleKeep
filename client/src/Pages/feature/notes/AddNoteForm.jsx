@@ -13,7 +13,7 @@ export const AddNoteForm = () => {
   const onTitleChanged = e => setTitle(e.target.value)
   const onContentChanged = e => setContent(e.target.value)
   const onSaveNoteClicked = () => {
-    if (title && content) {
+    if (title || content) {
       dispatch(
         addNewNote({
           title,

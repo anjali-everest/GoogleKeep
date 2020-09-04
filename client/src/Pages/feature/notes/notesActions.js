@@ -32,6 +32,6 @@ export const updateNote = (state, action) => {
 export const deleteNote = (state, action) => {
     var index = state.notes.map(note => {
         return note.Id;
-    }).indexOf(action.payload);
+    }).indexOf(state.deletingNoteId);
     state.notes.splice(index, 1);
 }

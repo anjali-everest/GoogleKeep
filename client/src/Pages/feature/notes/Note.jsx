@@ -23,10 +23,10 @@ export const Note = (props) => {
     }
 
     return (
-        note && note.title && note.content && <div id={note.id} key={note.id} className="note-body" onMouseEnter={onMouseEntered} onMouseLeave={onMouseLeft} onClick={onNoteClicked}>
+        note && <div id={note.id} key={note.id} className="note-body" onMouseEnter={onMouseEntered} onMouseLeave={onMouseLeft} onClick={onNoteClicked}>
             <p id={note.id} className="note-title">{note.title}</p>
             <p id={note.id} className="note-content">{note.content.substring(0, 100)}</p>
-            <img hidden={!showOptions} src={deleteIcon} alt="deleteIcon" className="note-delete-icon" onClick={onDeleteNoteClicked} />
+            <img id={note.id} hidden={!showOptions} src={deleteIcon} alt="deleteIcon" className="note-delete-icon" onClick={onDeleteNoteClicked} />
         </div>
     )
 }
