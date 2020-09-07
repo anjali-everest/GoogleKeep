@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import {
   updateIsEditingNote,
@@ -57,4 +58,8 @@ export const Note = (props) => {
       </div>
     )
   );
+};
+
+Note.propTypes = {
+  note: PropTypes.object,
 };

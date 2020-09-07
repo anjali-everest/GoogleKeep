@@ -22,7 +22,7 @@ export const NotesList = () => {
       {noteStatus === "succeeded" &&
         notes.notes &&
         notes.notes.length !== 0 &&
-        notes.notes.map((note) => <Note note={note} />)}
+        notes.notes.map((note) => <Note key={note.id} note={note} />)}
       {noteStatus === "failed" && <div>{error}</div>}
     </section>
   );

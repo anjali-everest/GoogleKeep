@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class ResizableTextarea extends React.PureComponent {
   constructor(props) {
@@ -44,5 +45,11 @@ class ResizableTextarea extends React.PureComponent {
     );
   }
 }
+
+ResizableTextarea.propTypes = {
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
+  placeholder: PropTypes.string,
+};
 
 export default ResizableTextarea;

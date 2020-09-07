@@ -9,7 +9,7 @@ export const AddNoteForm = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const onContentClicked = (e) => setOpenForm(true);
+  const onContentClicked = () => setOpenForm(true);
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onContentChanged = (e) => setContent(e.target.value);
   const onSaveNoteClicked = () => {
