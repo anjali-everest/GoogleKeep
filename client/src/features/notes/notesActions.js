@@ -26,10 +26,8 @@ export const updateNote = (state, action) => {
 };
 
 export const deleteNote = (state) => {
-  var index = state.notes
-    .map((note) => {
-      return note.Id;
-    })
-    .indexOf(state.deletingNoteId);
+  const index = state.notes.findIndex(
+    (note) => note.id === parseInt(state.deletingNoteId)
+  );
   state.notes.splice(index, 1);
 };

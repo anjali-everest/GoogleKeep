@@ -20,9 +20,9 @@ export const NotesList = () => {
     <section className="notes-list">
       {noteStatus === "loading" && <div className="loader">Loading...</div>}
       {noteStatus === "succeeded" &&
-        notes.notes &&
-        notes.notes.length !== 0 &&
-        notes.notes.map((note) => <Note key={note.id} note={note} />)}
+        notes &&
+        notes.length !== 0 &&
+        notes.map((note) => <Note key={note.id} note={note} />)}
       {noteStatus === "failed" && <div>{error}</div>}
     </section>
   );

@@ -41,7 +41,7 @@ const notesSlice = createSlice({
 
 export const selectIsEditingNote = (state) => state.notes.isEditingNote;
 export const selectEditingNoteId = (state) => state.notes.editingNoteId;
-export const selectAllNotes = (state) => state.notes;
+export const selectAllNotes = (state) => state.notes.notes;
 export const selectNoteById = (state, id) =>
   state.notes.notes.find((note) => note.id === id);
 export const selectApiStatus = (state) => state.notes.status;
