@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddNoteForm tests should match the AddNoteForm snapshot 1`] = `ReactWrapper {}`;

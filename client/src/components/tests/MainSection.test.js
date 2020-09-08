@@ -16,7 +16,7 @@ describe("MainSection tests", () => {
   });
 
   it("Should render without crashing", () => {
-    const wrapper = mount(
+    mount(
       <Provider store={store}>
         <MainSection />
       </Provider>
