@@ -16,8 +16,10 @@ class ResizableTextarea extends React.PureComponent {
     const textareaLineHeight = 12;
     const { minRows, maxRows } = this.state;
     const previousRows = event.target.rows;
-    event.target.rows = minRows; // reset number of rows in textarea
-    const currentRows = ~~(event.target.scrollHeight / textareaLineHeight);
+    event.target.rows = minRows;
+    const currentRows = Math.floor(
+      event.target.scrollHeight / textareaLineHeight
+    );
     if (currentRows === previousRows) {
       event.target.rows = currentRows;
     }
@@ -38,7 +40,8 @@ class ResizableTextarea extends React.PureComponent {
         rows={this.state.rows}
         value={this.state.value}
         placeholder={this.props.placeholder}
-        className={"textarea"}
+        className={this.props.id}
+        id={this.props.id}
         onChange={this.handleChange}
         onClick={this.props.onClick}
       />
@@ -47,6 +50,7 @@ class ResizableTextarea extends React.PureComponent {
 }
 
 ResizableTextarea.propTypes = {
+  id: PropTypes.number,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,

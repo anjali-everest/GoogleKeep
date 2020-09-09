@@ -32,13 +32,14 @@ export const AddNoteForm = () => {
         type="text"
         id="noteTitle"
         name="noteTitle"
-        className="note-title"
+        className="noteTitle"
         hidden={!openForm}
         value={title}
         placeholder="Title"
         onChange={onTitleChanged}
       />
       <ResizableTextarea
+        id="noteContent"
         placeholder="Take a note..."
         value={content}
         onChange={onContentChanged}
