@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addNewNote } from "../thunkHandler";
 import ResizableTextarea from "../../../components/ResizableTextArea";
+import { NOTE_TITLE_PLACEHOLDER } from "../../../util/AppConstants";
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch();
@@ -35,12 +36,12 @@ export const AddNoteForm = () => {
         className="noteTitle"
         hidden={!openForm}
         value={title}
-        placeholder="Title"
+        placeholder={NOTE_TITLE_PLACEHOLDER}
         onChange={onTitleChanged}
       />
       <ResizableTextarea
         id="noteContent"
-        placeholder="Take a note..."
+        placeholder={NOTE_TITLE_PLACEHOLDER}
         value={content}
         onChange={onContentChanged}
         onClick={onContentClicked}

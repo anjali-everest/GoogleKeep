@@ -1,18 +1,20 @@
+import { LOADING, SUCCEEDED, FAILED } from "../../util/AppConstants";
+
 export const addNote = (state, action) => {
   state.notes.push(action.payload);
 };
 
 export const updateStatusPending = (state) => {
-  state.status = "loading";
+  state.status = LOADING;
 };
 
 export const updateAllNotes = (state, action) => {
-  state.status = "succeeded";
+  state.status = SUCCEEDED;
   state.notes = action.payload;
 };
 
 export const updateStatusFailed = (state, action) => {
-  state.status = "failed";
+  state.status = FAILED;
   state.error = action.error.message;
 };
 
