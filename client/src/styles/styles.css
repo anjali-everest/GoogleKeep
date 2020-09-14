@@ -57,7 +57,7 @@ h2 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.add-note-form .note-title {
+.add-note-form .noteTitle {
   margin: 10px 10px 10px 10px;
   border: none;
   width: 95%;
@@ -67,8 +67,8 @@ h2 {
   font-weight: 500;
 }
 
-.add-note-form .note-title:focus,
-.textarea {
+.add-note-form .noteTitle:focus,
+.add-note-form .noteContent:focus {
   outline: none;
 }
 
@@ -76,7 +76,7 @@ p strong {
   display: block;
 }
 
-.textarea {
+.add-note-form .noteContent {
   resize: none;
   overflow: hidden;
   height: auto;
@@ -89,7 +89,7 @@ p strong {
   margin: 8px;
 }
 
-.textarea ::placeholder {
+.add-note-form .noteContent ::placeholder {
   color: gainsboro;
 }
 

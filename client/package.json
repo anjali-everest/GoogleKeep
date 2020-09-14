@@ -57,6 +57,7 @@
     },
     "setupFilesAfterEnv": [
       "<rootDir>/setupTests.js"
-    ]
+    ],
+    "collectCoverage": true
   }
 }

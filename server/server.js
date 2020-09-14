@@ -5,7 +5,7 @@ import {
     addNote,
     updateNote,
     deleteNote
-} from './api/controller/notecontroller';
+} from './api/controller/noteController.js';
 import cors from 'cors';
 
 const app = express();

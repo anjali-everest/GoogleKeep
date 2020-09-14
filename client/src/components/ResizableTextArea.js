@@ -40,7 +40,7 @@ const ResizableTextarea = (props) => {
 };
 
 ResizableTextarea.propTypes = {
-  id: PropTypes.number,
+  id: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,

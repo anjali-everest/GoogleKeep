@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { Note } from "../Note";
 import configureMockStore from "redux-mock-store";
-import * as ReactReduxHooks from "react-redux";
+import { Provider } from "react-redux";
 
 const mockStore = configureMockStore();
 
@@ -16,22 +16,13 @@ describe("Note tests", () => {
     isEditingNote: false,
     deletingNoteId: null,
   });
+  const note = shallow(
+    <Provider store={store}>
+      <Note note={noteProp} />
+    </Provider>
+  );
 
-  beforeEach(() => {
-    jest
-      .spyOn(ReactReduxHooks, "useSelector")
-      .mockImplementation(() => store.getState());
-    jest
-      .spyOn(ReactReduxHooks, "useDispatch")
-      .mockImplementation(() => store.dispatch);
-  });
-
-  it("Should render without crashing", () => {
-    shallow(<Note note={noteProp} />);
-  });
-
-  it("should match the Note snapshot", function () {
-    const note = shallow(<Note note={noteProp} />);
+  it("should match the Note snapshot", () => {
     expect(note).toMatchSnapshot();
   });
 });
