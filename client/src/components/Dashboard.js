@@ -3,11 +3,6 @@ import Header from "./Header";
 import MainSection from "./MainSection";
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
   render() {
     return (
       <div>
