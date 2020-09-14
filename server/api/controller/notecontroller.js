@@ -23,11 +23,7 @@ const responseHandler = new ResponseHandler();
 const getAllNotes = async (request, response) => {
   try {
     const notes = await getAll();
-    if (notes.length > 0) {
-      responseHandler.setSuccess(200, NOTES_RETRIEVED, notes);
-    } else {
-      responseHandler.setSuccess(404, NOTES_NOT_FOUND);
-    }
+    responseHandler.setSuccess(200, NOTES_RETRIEVED, notes);
     return responseHandler.send(response);
   } catch (error) {
     responseHandler.setError(400, error);
