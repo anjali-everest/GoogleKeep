@@ -14,7 +14,6 @@ import {
   NOTE_NOT_FOUND_WITH_ID,
   NOTE_RETRIEVED,
   NOTE_UPDATED,
-  NOTES_NOT_FOUND,
   NOTES_RETRIEVED,
 } from "../util/ServerConstants";
 import util from "util";
@@ -41,7 +40,7 @@ const getOneNote = async (request, response) => {
     const note = await getOne(id);
     if (note.length > 0) responseHandler.setSuccess(200, NOTE_RETRIEVED, note);
     else
-      responseHandler.setSuccess(404, util.format(NOTE_NOT_FOUND_WITH_ID, id));
+      responseHandler.setSuccess(200, util.format(NOTE_NOT_FOUND_WITH_ID, id));
     return responseHandler.send(response);
   } catch (error) {
     responseHandler.setError(400, error);
@@ -51,8 +50,8 @@ const getOneNote = async (request, response) => {
 
 const addNote = async (request, response) => {
   if (
-    (request.body.title == null || request.body.title == undefined) &&
-    (request.body.content == null || request.body.content == undefined)
+    (request.body.title === null || request.body.title === undefined) &&
+    (request.body.content === null || request.body.content === undefined)
   ) {
     responseHandler.setError(400, INVALID_NOTE);
     return responseHandler.send(response);
@@ -83,9 +82,9 @@ const updateNote = async (request, response) => {
   }
   try {
     const updatedFile = await update(note);
-    if (updatedFile == null)
+    if (updatedFile === null)
       responseHandler.setSuccess(
-        404,
+        200,
         util.format(NOTE_NOT_FOUND_WITH_ID, note.id)
       );
     else responseHandler.setSuccess(200, NOTE_UPDATED, note);
@@ -108,9 +107,9 @@ const deleteNote = async (request, response) => {
   }
   try {
     const deletedNote = await deleteOne(note);
-    if (deletedNote == null)
+    if (deletedNote === null)
       responseHandler.setSuccess(
-        404,
+        200,
         util.format(NOTE_NOT_FOUND_WITH_ID, note.id)
       );
     else responseHandler.setSuccess(200, NOTE_DELETED);
