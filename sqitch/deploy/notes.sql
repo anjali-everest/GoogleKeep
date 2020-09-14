@@ -4,7 +4,7 @@
 BEGIN;
 
 CREATE TABLE notes (
-    id  INT PRIMARY KEY,
+    id  SERIAL PRIMARY KEY,
     title  VARCHAR(512),
     content VARCHAR(512)
 );
