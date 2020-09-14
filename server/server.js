@@ -19,6 +19,6 @@ app.post('/notes', addNote);
 app.put('/notes/:id', updateNote);
 app.delete('/notes/:id', deleteNote);
 
-app.listen(3000);
+app.listen(8080);
 
 export default app;
