@@ -5,7 +5,7 @@ import {
   insert,
   update,
   deleteOne,
-} from "../service/noteService";
+} from "../service/noteservice";
 import {
   INVALID_NOTE,
   INVALID_NOTE_ID,
