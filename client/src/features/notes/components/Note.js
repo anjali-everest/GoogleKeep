@@ -5,9 +5,9 @@ import {
   updateIsEditingNote,
   updateEditingNoteId,
   updateDeletingNoteId,
-} from "../notesSlice";
-import { deleteOneNote } from "../thunkHandler";
-import deleteIcon from "../../../styles/deleteIcon.png";
+} from "./../notesSlice";
+import { deleteOneNote } from "./../thunkHandler";
+import deleteIcon from "./../../../styles/deleteIcon.png";
 
 export const Note = (props) => {
   const { note } = props;

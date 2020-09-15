@@ -4,8 +4,8 @@ import {
   updateIsEditingNote,
   selectEditingNoteId,
   selectNoteById,
-} from "../notesSlice";
-import { fetchNotes, updateOneNote } from "../thunkHandler";
+} from "./../notesSlice";
+import { fetchNotes, updateOneNote } from "./../thunkHandler";
 
 export const EditNoteForm = () => {
   const noteId = useSelector(selectEditingNoteId);

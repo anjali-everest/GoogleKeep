@@ -1,5 +1,5 @@
 import axios from "axios";
-import {NOTES_API_URL} from "../util/AppConstants"
+import { NOTES_API_URL } from "./../util/AppConstants";
 
 const getNotes = async () => {
   try {
