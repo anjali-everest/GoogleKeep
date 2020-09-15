@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { addNewNote } from "../thunkHandler";
 import ResizableTextarea from "../../../components/ResizableTextArea";
 import {
-  NOTE_TITLE_PLACEHOLDER,
   NOTE_CONTENT_PLACEHOLDER,
-} from "../../../util/AppConstants";
+  NOTE_TITLE_PLACEHOLDER,
+} from "./../../../util/AppConstants";
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch();
