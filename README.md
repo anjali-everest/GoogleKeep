@@ -11,7 +11,9 @@ Google Keep is an application which is used to maintain notes. It allows users t
 **Requirements:**
 - Docker
 
-**Steps to run:** Use below commands, Inside the project directory.
+**Steps to run:** Use below commands, 
+- Step inside the project directory.
+<pre> <code> cd GoogleKeep </code></pre>
 - Run the application<br/>
 <pre> <code> sh startup-googlekeep.sh </code></pre>
 **Access the application on**
