@@ -4,8 +4,8 @@ import {
   addNote,
   updateNote,
   deleteNote,
-} from "../../util/ApiHandler";
-import ResponseHandler from "../../util/ResponseHandler";
+} from "../../utils/ApiHandler";
+import ResponseHandler from "../../utils/ResponseHandler";
 
 export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
   const response = ResponseHandler.getResponse(await getNotes());

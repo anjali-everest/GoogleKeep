@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { EditNoteForm } from "../EditNoteForm";
 import configureMockStore from "redux-mock-store";
 import { Provider } from "react-redux";
-import * as thunks from "../../thunkHandler";
+import * as thunks from "../../thunksHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const mockStore = configureMockStore([createAsyncThunk]);

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAllNotes, selectApiStatus, selectApiError } from "./../notesSlice";
-import { fetchNotes } from "./../thunkHandler";
+import { fetchNotes } from "../thunksHandler";
 import { Note } from "./Note";
 
 export const NotesList = () => {
