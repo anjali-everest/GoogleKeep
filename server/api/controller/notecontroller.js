@@ -5,7 +5,7 @@ import {
   insert,
   update,
   deleteOne,
-} from "../service/noteservice";
+} from "../service/noteService";
 import {
   INVALID_NOTE,
   INVALID_NOTE_ID,
@@ -15,7 +15,7 @@ import {
   NOTE_RETRIEVED,
   NOTE_UPDATED,
   NOTES_RETRIEVED,
-} from "../util/ServerConstants";
+} from "../util/serverConstants";
 import util from "util";
 
 const responseHandler = new ResponseHandler();

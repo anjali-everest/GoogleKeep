@@ -5,7 +5,7 @@ import {
   GET_ONE_NOTE,
   INSERT_NOTE,
   UPDATE_NOTE,
-} from "../util/ServerConstants";
+} from "../util/serverConstants";
 import util from "util";
 
 const getAll = async () => {

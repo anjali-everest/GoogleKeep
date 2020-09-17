@@ -9,4 +9,5 @@ pool = new Pool({
   password: "postgres",
   port: 5432,
 });
+
 export default pool;
