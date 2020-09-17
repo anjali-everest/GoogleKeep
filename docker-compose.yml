@@ -11,7 +11,8 @@ services:
       - 8080
     ports:
       - 8080:8080
-    command: npm start
+    env_file: ./server/.env
+    command: sh -c "npm run migrate up && npm start"
 
   client:
     build:
@@ -31,9 +32,6 @@ services:
     ports:
       - 5432:5432
     restart: on-failure
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+    env_file: ./.env
     healthcheck:
       test: exit 0

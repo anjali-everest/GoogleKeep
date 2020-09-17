@@ -3,11 +3,7 @@ const Pool = pg.Pool;
 
 let pool;
 pool = new Pool({
-  user: "postgres",
-  host: "database",
-  database: "postgres",
-  password: "postgres",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL,
 });
 
 export default pool;

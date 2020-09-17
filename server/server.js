@@ -7,11 +7,12 @@ import {
   deleteNote,
 } from "./api/controller/noteController";
 import cors from "cors";
+import dotenv from "dotenv";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-process.env.NODE_ENV = "development";
+dotenv.config();
 
 app.get("/notes", getAllNotes);
 app.get("/notes/:id", getOneNote);

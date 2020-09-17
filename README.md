@@ -5,7 +5,6 @@ Google Keep is an application which is used to maintain notes. It allows users t
 1. Node JS
 2. React JS
 3. PostgreSQL Database
-4. Sqitch for DB migration
 5. Docker
     
 **Requirements:**
@@ -15,6 +14,6 @@ Google Keep is an application which is used to maintain notes. It allows users t
 - Step inside the project directory.
 <pre> <code> cd GoogleKeep </code></pre>
 - Run the application<br/>
-<pre> <code> sh startup-googlekeep.sh </code></pre>
+<pre> <code> docker-compose up -d </code></pre>
 **Access the application on**
 <pre> <code> localhost:3000 </code></pre>

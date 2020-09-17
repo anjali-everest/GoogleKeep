@@ -1,6 +1,0 @@
-%syntax-version=1.0.0
-%project=googlekeep
-%uri=https://github.com/anjali-everest/GoogleKeep
-
-appschema 2020-09-14T05:47:45Z Gaddam Anjali <anjali.gaddam@everest.engineering> # Add schema for all googlekeep objects.
-notes [appschema] 2020-09-14T05:52:04Z Gaddam Anjali <anjali.gaddam@everest.engineering> # Creates table to track our notes.
