@@ -6,19 +6,26 @@ import {
   updateNote,
   deleteNote,
 } from "./api/controller/noteController";
+import NoteService from "./api/service/NoteService";
 import cors from "cors";
-import dotenv from "dotenv";
+import {
+  addNoteValidation,
+  getNoteValidationRules,
+  updateNoteValidationRules,
+  validate,
+  deleteNoteValidationRules,
+} from "./api/validation/validator";
 
 const app = express();
 app.use(express.json());
 app.use(cors());
-dotenv.config();
 
+const noteService = new NoteService();
 app.get("/notes", getAllNotes);
-app.get("/notes/:id", getOneNote);
-app.post("/notes", addNote);
-app.put("/notes/:id", updateNote);
-app.delete("/notes/:id", deleteNote);
+app.get("/notes/:id", getNoteValidationRules(), validate, getOneNote);
+app.post("/notes", addNoteValidation(), validate, addNote);
+app.put("/notes/:id", updateNoteValidationRules(), validate, updateNote);
+app.delete("/notes/:id", deleteNoteValidationRules(), validate, deleteNote);
 
 app.listen(8080);
 
