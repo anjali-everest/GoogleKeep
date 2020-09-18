@@ -1,14 +1,14 @@
 import { NOTE_NOT_FOUND_WITH_ID } from "../util/ServerConstants";
 
-let noteService = null;
 export default class NoteController {
-  constructor(service) {
-    noteService = service;
+  #noteService = null;
+  constructor(noteService) {
+    this.#noteService = noteService;
   }
 
   getAllNotes = async (request, response) => {
     try {
-      const notes = await noteService.getAll();
+      const notes = await this.#noteService.getAll();
       return response.json(notes);
     } catch (error) {
       return sendError(response, 500, error);
@@ -18,7 +18,7 @@ export default class NoteController {
   getOneNote = async (request, response) => {
     const { id } = request.params;
     try {
-      const note = await noteService.getOne(id);
+      const note = await this.#noteService.getOne();
       if (!isExist(note))
         return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
       return response.json(note);
@@ -30,7 +30,7 @@ export default class NoteController {
   addNote = async (request, response) => {
     try {
       const { title, content } = request.body;
-      const note = await noteService.insert({
+      const note = await this.#noteService.insert({
         title,
         content,
       });
@@ -47,10 +47,9 @@ export default class NoteController {
       content: request.body.content,
     };
     try {
-      const noteToUpdate = await noteService.getOne(note.id);
-      if (!isExist(noteToUpdate))
+      if (!this.isNoteAvailable(note.id))
         return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
-      const updatedFile = await noteService.update(note);
+      const updatedFile = await this.#noteService.update(note);
       return response.json(updatedFile);
     } catch (error) {
       return sendError(response, 500, error);
@@ -60,14 +59,18 @@ export default class NoteController {
   deleteNote = async (request, response) => {
     const id = request.params.id;
     try {
-      const noteToDelete = await noteService.getOne(id);
-      if (!isExist(noteToDelete))
+      if (!this.isNoteAvailable(id))
         return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
-      await noteService.deleteOne(id);
+      await this.#noteService.deleteOne(id);
       return response.status(204).json();
     } catch (error) {
       return sendError(response, 500, error);
     }
+  };
+
+  isNoteAvailable = async (id) => {
+    const note = await this.#noteService.getOne(id);
+    return isExist(note);
   };
 }
 
