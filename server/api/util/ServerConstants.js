@@ -1,11 +1,11 @@
 //Query constants
 export const GET_ALL_NOTES = "SELECT * FROM notes";
-export const GET_ONE_NOTE = "SELECT * FROM notes WHERE id = %d";
+export const GET_ONE_NOTE = "SELECT * FROM notes WHERE id = $1";
 export const INSERT_NOTE =
-  "INSERT INTO notes(title,content) VALUES ('%s','%s') RETURNING *";
+  "INSERT INTO notes(title,content) VALUES ($1, $2) RETURNING *";
 export const UPDATE_NOTE =
-  "UPDATE notes SET title = '%s',content = '%s' WHERE id = %d RETURNING *";
-export const DELETE_NOTE = "DELETE FROM notes WHERE id = %d";
+  "UPDATE notes SET title = $1,content = $2 WHERE id = $3 RETURNING *";
+export const DELETE_NOTE = "DELETE FROM notes WHERE id = $1";
 //API response message constants
 export const NOTES_RETRIEVED = "Notes retrieved!";
 export const NOTES_NOT_FOUND = "Notes not found!";
