@@ -37,8 +37,12 @@ class NoteService {
 
   update = async (note) => {
     try {
-      await db.query(UPDATE_NOTE, [note.title, note.content, note.id]);
-      return note;
+      const response = await db.query(UPDATE_NOTE, [
+        note.title,
+        note.content,
+        note.id,
+      ]);
+      return response.rows[0];
     } catch (e) {
       return e;
     }

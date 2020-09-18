@@ -1,27 +1,27 @@
 import pkg from "express-validator";
 const { body, param, validationResult } = pkg;
 
-const addNoteValidation = () => {
-  return [
+const addNoteValidation = (req, res, next) => {
+  body("title").optional().isString(), body("content").optional().isString();
+  validate(req, res, next);
+};
+
+const getNoteValidation = (req, res, next) => {
+  param("id").not().isEmpty().isInt();
+  validate(req, res, next);
+};
+
+const updateNoteValidation = (req, res, next) => {
+  param("id").not().isEmpty().isInt(),
     body("title").optional().isString(),
-    body("content").optional().isString(),
-  ];
+    body("content").optional().isString();
+
+  validate(req, res, next);
 };
 
-const getNoteValidationRules = () => {
-  return [param("id").not().isEmpty().isInt()];
-};
-
-const updateNoteValidationRules = () => {
-  return [
-    param("id").not().isEmpty().isInt(),
-    body("title").optional().isString(),
-    body("content").optional().isString(),
-  ];
-};
-
-const deleteNoteValidationRules = () => {
-  return [param("id").not().isEmpty().isInt()];
+const deleteNoteValidation = (req, res, next) => {
+  param("id").not().isEmpty().isInt();
+  validate(req, res, next);
 };
 
 const validate = (req, res, next) => {
@@ -35,8 +35,7 @@ const validate = (req, res, next) => {
 
 export {
   addNoteValidation,
-  getNoteValidationRules,
-  updateNoteValidationRules,
-  deleteNoteValidationRules,
-  validate,
+  getNoteValidation,
+  updateNoteValidation,
+  deleteNoteValidation,
 };
