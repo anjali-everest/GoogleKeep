@@ -7,7 +7,7 @@ import {
   UPDATE_NOTE,
 } from "../util/serverConstants";
 
-class NoteService{
+class NoteService {
   getAll = async () => {
     try {
       const response = await db.query(GET_ALL_NOTES);
@@ -17,7 +17,7 @@ class NoteService{
     }
   };
 
- getOne = async (id) => {
+  getOne = async (id) => {
     try {
       const response = await db.query(GET_ONE_NOTE, [id]);
       return response.rows;
@@ -25,7 +25,7 @@ class NoteService{
       return e;
     }
   };
-  
+
   insert = async (note) => {
     try {
       const response = await db.query(INSERT_NOTE, [note.title, note.content]);
@@ -34,7 +34,7 @@ class NoteService{
       return e;
     }
   };
-  
+
   update = async (note) => {
     try {
       await db.query(UPDATE_NOTE, [note.title, note.content, note.id]);
@@ -43,15 +43,14 @@ class NoteService{
       return e;
     }
   };
-  
+
   deleteOne = async (id) => {
     try {
       await db.query(DELETE_NOTE, [id]);
-      return note;
     } catch (e) {
       return e;
     }
   };
-};
+}
 
 export default NoteService;

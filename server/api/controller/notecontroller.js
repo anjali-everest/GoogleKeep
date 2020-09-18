@@ -1,42 +1,54 @@
-import NoteService from "../service/NoteService";
+export default class NoteController {
+  constructor(noteService) {
+    this.noteService = noteService;
+  }
 
-const noteService = new NoteService();
+  getAllNotes = async (request, response) => {
+    const notes = await this.noteService.getAll();
 
-const getAllNotes = async (request, response) => {
-  const notes = await noteService.getAll();
-  return response.json(notes);
-};
-
-const getOneNote = async (request, response) => {
-  const { id } = request.params;
-  const note = await noteService.getOne(id);
-  return response.json(note); //if no note found??
-};
-
-const addNote = async (request, response) => {
-  const { title, content } = request.body;
-  const note = await noteService.insert({
-    title,
-    content,
-  });
-
-  response.status(201).json(note);
-};
-
-const updateNote = async (request, response) => {
-  const note = {
-    id: request.params.id,
-    title: request.body.title,
-    content: request.body.content,
+    return response.json(notes);
   };
-  const updatedFile = await noteService.update(note);
-  return response.json(updatedFile);
-};
 
-const deleteNote = async (request, response) => {
-  const id = request.params.id;
-  const deletedNote = await noteService.deleteOne(id);
-  return response.json(deletedNote);
-};
+  getOneNote = async (request, response) => {
+    const { id } = request.params;
+    const note = await this.noteService.getOne(id);
+    if (!note || note.length === 0)
+      return response.status(400).json({ error: "Note not found with ID" });
 
-export { getAllNotes, getOneNote, addNote, updateNote, deleteNote };
+    return response.json(note);
+  };
+
+  addNote = async (request, response) => {
+    const { title, content } = request.body;
+    const note = await this.noteService.insert({
+      title,
+      content,
+    });
+
+    response.status(201).json(note);
+  };
+
+  updateNote = async (request, response) => {
+    const note = {
+      id: request.params.id,
+      title: request.body.title,
+      content: request.body.content,
+    };
+    const noteToUpdate = await this.noteService.getOne(note.id);
+    if (!noteToUpdate || noteToUpdate.length === 0)
+      return response.status(400).json({ error: "Note not found with ID" });
+
+    const updatedFile = await this.noteService.update(note);
+    return response.json(updatedFile);
+  };
+
+  deleteNote = async (request, response) => {
+    const id = request.params.id;
+    const noteToDelete = await this.noteService.getOne(id);
+    if (!noteToDelete || noteToDelete.length === 0)
+      return response.status(400).json({ error: "Note not found with ID" });
+
+    await this.noteService.deleteOne(id);
+    return response.status(204).json();
+  };
+}
