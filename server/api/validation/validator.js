@@ -22,10 +22,10 @@ export default class Validator {
 
   static deleteNoteValidation = (req, res, next) => {
     param("id").not().isEmpty().isInt();
-    this.validate(req, res, next);
+    this.validate(req, res, next)
   };
 
-  validate = (req, res, next) => {
+  static validate = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       return next();

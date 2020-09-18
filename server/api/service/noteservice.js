@@ -5,7 +5,7 @@ import {
   GET_ONE_NOTE,
   INSERT_NOTE,
   UPDATE_NOTE,
-} from "../util/serverConstants";
+} from "../util/ServerConstants";
 
 class NoteService {
   getAll = async () => {

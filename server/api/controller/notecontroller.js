@@ -1,4 +1,4 @@
-import { NOTE_NOT_FOUND_WITH_ID } from "../util/serverConstants";
+import { NOTE_NOT_FOUND_WITH_ID } from "../util/ServerConstants";
 
 let noteService = null;
 export default class NoteController {
@@ -50,7 +50,6 @@ export default class NoteController {
       const noteToUpdate = await noteService.getOne(note.id);
       if (!isExist(noteToUpdate))
         return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
-      console.log("exist");
       const updatedFile = await noteService.update(note);
       return response.json(updatedFile);
     } catch (error) {
