@@ -1,4 +1,4 @@
-import app from "./../server";
+import app from "../server";
 import request from "supertest";
 import pool from "../database/index";
 
@@ -12,8 +12,7 @@ describe("Test the File endpoints", () => {
   describe("Testing the getNotes API", () => {
     it("should get response as No notes found with status 404 when there are no notes available in db", async () => {
       const res = await request(app).get("/notes");
-      expect(res.statusCode).toEqual(404);
-      expect(res.body.message).toEqual("Notes not found!");
+      expect(res.statusCode).toEqual(200);
     });
 
     it("should get response as Notes found with status code 200 when you insert note in db", async () => {
@@ -22,16 +21,16 @@ describe("Test the File endpoints", () => {
         .then(async () => {
           const res = await request(app).get("/notes");
           expect(res.statusCode).toEqual(200);
-          expect(res.body.message).toEqual("Notes retrieved!");
+          expect(res.body.length > 0).toBe(true);
         });
     });
   });
 
   describe("Testing the getNotesByID API", () => {
-    it("should get response as Note not found with status 404 when there are no note available with given ID", async () => {
+    it("should get response with status 400 when there are no note available with given ID", async () => {
       const res = await request(app).get("/notes/1");
-      expect(res.statusCode).toEqual(404);
-      expect(res.body.message).toEqual("Note not found with id: 1");
+      expect(res.statusCode).toEqual(400);
+      expect(res.body.error).toEqual("Note not found with given id");
     });
 
     it("should get response as Note found with status code 200 when there exists note with given id", async () => {
@@ -42,14 +41,15 @@ describe("Test the File endpoints", () => {
         .then(async () => {
           const res = await request(app).get("/notes/1");
           expect(res.statusCode).toEqual(200);
-          expect(res.body.message).toEqual("Note retrieved!");
+          expect(res.body.length > 0).toBe(true);
         });
     });
 
     it("should get response status 400 given invalid id", async () => {
       const res = await request(app).get("/notes/&");
-      expect(res.statusCode).toEqual(400);
-      expect(res.body.message).toEqual("Invalid note ID!");
+      expect(res.statusCode).toEqual(422);
+      expect(res.body.errors.length > 0).toBe(true);
+      expect(res.body.errors[0].msg).toEqual("Invalid value");
     });
   });
 
@@ -61,13 +61,9 @@ describe("Test the File endpoints", () => {
       };
       const res = await request(app).post("/notes").send(newNote);
       expect(res.status).toEqual(201);
-      expect(res.body.message).toEqual("Note created!");
-    });
-
-    it("should get response with 400 when called addNote with out input note", async () => {
-      const res = await request(app).post("/notes").send({});
-      expect(res.status).toEqual(400);
-      expect(res.body.message).toEqual("Invalid input note to create");
+      expect(res.body.length > 0).toBe(true);
+      expect(res.body[0].title).toEqual(newNote.title);
+      expect(res.body[0].content).toEqual(newNote.content);
     });
   });
 
@@ -90,19 +86,17 @@ describe("Test the File endpoints", () => {
           };
           const res = await request(app).put("/notes/1").send(noteToUpdate);
           expect(res.statusCode).toEqual(200);
-          expect(res.body.message).toEqual("Note updated!");
         });
     });
 
     it("should get response with 404 when called updateNote with id which does not exist in notes", async () => {
       const noteToUpdate = {
-        id: 1,
         title: "updateTitle",
         content: "updateContent",
       };
-      const res = await request(app).put("/notes/1").send(noteToUpdate);
-      expect(res.statusCode).toEqual(404);
-      expect(res.body.message).toEqual("Note not found with id: 1");
+      const res = await request(app).put("/notes/0").send(noteToUpdate);
+      expect(res.statusCode).toEqual(400);
+      expect(res.body.error).toEqual("Note not found with given id");
     });
 
     it("should get response with 404 when called updateNote with invalid note id as param", async () => {
@@ -112,8 +106,9 @@ describe("Test the File endpoints", () => {
         content: "updateContent",
       };
       const res = await request(app).put("/notes/A").send(noteToUpdate);
-      expect(res.statusCode).toEqual(400);
-      expect(res.body.message).toEqual("Invalid note ID!");
+      expect(res.statusCode).toEqual(422);
+      expect(res.body.errors.length > 0).toBe(true);
+      expect(res.body.errors[0].msg).toEqual("Invalid value");
     });
   });
 
@@ -130,21 +125,21 @@ describe("Test the File endpoints", () => {
         )
         .then(async () => {
           const res = await request(app).delete("/notes/1");
-          expect(res.statusCode).toEqual(200);
-          expect(res.body.message).toEqual("Note deleted!");
+          expect(res.statusCode).toEqual(204);
         });
     });
 
     it("should get response with 404 when called deleteNote with id which does not exist in Database", async () => {
-      const res = await request(app).delete("/notes/1");
-      expect(res.statusCode).toEqual(404);
-      expect(res.body.message).toEqual("Note not found with id: 1");
+      const res = await request(app).delete("/notes/0");
+      expect(res.statusCode).toEqual(400);
+      expect(res.body.error).toEqual("Note not found with given id");
     });
 
     it("should get response with 404 when called deleteNote with invalid note id as param", async () => {
       const res = await request(app).put("/notes/A");
-      expect(res.statusCode).toEqual(400);
-      expect(res.body.message).toEqual("Invalid note ID!");
+      expect(res.statusCode).toEqual(422);
+      expect(res.body.errors.length > 0).toBe(true);
+      expect(res.body.errors[0].msg).toEqual("Invalid value");
     });
   });
 });
