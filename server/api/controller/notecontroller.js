@@ -18,7 +18,7 @@ class NoteController {
   getOneNote = async (request, response) => {
     const { id } = request.params;
     try {
-      const note = await this.#noteService.getOne();
+      const note = await this.#noteService.getOne(id);
       if (!isExist(note))
         return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
       return response.json(note);
@@ -82,4 +82,4 @@ const sendError = (response, status, error) => {
   return response.status(status).json({ error: error });
 };
 
-module.exports = NoteController
+module.exports = NoteController;
