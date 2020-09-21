@@ -1,30 +1,30 @@
 const { body, param, validationResult } = require("express-validator"); // const  = pkg;
 
 class Validator {
-  static addNoteValidation = (req, res, next) => {
-    body("title").optional().isString(), body("content").optional().isString();
-    this.validate(req, res, next);
-  };
-
-  static getNoteValidation = (req, res, next) => {
-    param("id").not().isEmpty().isInt();
-    this.validate(req, res, next);
-  };
-
-  static updateNoteValidation = (req, res, next) => {
-    param("id").not().isEmpty().isInt(),
+  static applyAddNoteRules = () => {
+    return [
       body("title").optional().isString(),
-      body("content").optional().isString();
-
-    this.validate(req, res, next);
+      body("content").optional().isString(),
+    ];
   };
 
-  static deleteNoteValidation = (req, res, next) => {
-    param("id").not().isEmpty().isInt();
-    this.validate(req, res, next);
+  static applyGetNoteRules = () => {
+    return [param("id").not().isEmpty().isInt()];
   };
 
-  static validate = (req, res, next) => {
+  static applyUpdateNoteRules = () => {
+    return [
+      param("id").not().isEmpty().isInt(),
+      body("title").optional().isString(),
+      body("content").optional().isString(),
+    ];
+  };
+
+  static applyDeleteNoteRules = () => {
+    return [param("id").not().isEmpty().isInt()];
+  };
+
+  static validateRules = (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
       return next();

@@ -9,18 +9,26 @@ const noteController = new NoteController(new NoteService());
 noteRouter.get("/notes", noteController.getAllNotes);
 noteRouter.get(
   "/notes/:id",
-  Validator.getNoteValidation,
+  Validator.applyGetNoteRules(),
+  Validator.validateRules,
   noteController.getOneNote
 );
-noteRouter.post("/notes", Validator.addNoteValidation, noteController.addNote);
+noteRouter.post(
+  "/notes",
+  Validator.applyAddNoteRules(),
+  Validator.validateRules,
+  noteController.addNote
+);
 noteRouter.put(
   "/notes/:id",
-  Validator.updateNoteValidation,
+  Validator.applyUpdateNoteRules(),
+  Validator.validateRules,
   noteController.updateNote
 );
 noteRouter.delete(
   "/notes/:id",
-  Validator.deleteNoteValidation,
+  Validator.applyDeleteNoteRules(),
+  Validator.validateRules,
   noteController.deleteNote
 );
 

@@ -7,6 +7,6 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/", noteRouter);
-app.listen(8080);
+const server = app.listen(8080);
 
-module.exports = app;
+module.exports = server;
