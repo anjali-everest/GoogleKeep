@@ -1,6 +1,6 @@
-import { NOTE_NOT_FOUND_WITH_ID } from "../util/ServerConstants";
+const { NOTE_NOT_FOUND_WITH_ID } = require("../util/ServerConstants");
 
-export default class NoteController {
+class NoteController {
   #noteService = null;
   constructor(noteService) {
     this.#noteService = noteService;
@@ -81,3 +81,5 @@ const isExist = (item) => {
 const sendError = (response, status, error) => {
   return response.status(status).json({ error: error });
 };
+
+module.exports = NoteController

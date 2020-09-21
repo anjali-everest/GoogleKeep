@@ -1,11 +1,12 @@
-import db from "../../database";
-import {
+const db = require("../../database");
+
+const {
   DELETE_NOTE,
   GET_ALL_NOTES,
   GET_ONE_NOTE,
   INSERT_NOTE,
   UPDATE_NOTE,
-} from "../util/ServerConstants";
+} = require("../util/ServerConstants");
 
 class NoteService {
   getAll = async () => {
@@ -57,4 +58,4 @@ class NoteService {
   };
 }
 
-export default NoteService;
+module.exports = NoteService;

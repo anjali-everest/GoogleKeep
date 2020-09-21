@@ -1,9 +1,8 @@
-import pkg from "express";
-import NoteController from "../controller/NoteController";
-import Validator from "../validation/Validator";
-import NoteService from "../service/NoteService";
+const { Router } = require("express");
+const NoteController = require("../controller/NoteController");
+const Validator = require("../validation/Validator");
+const NoteService = require("../service/NoteService");
 
-const { Router } = pkg;
 const noteRouter = Router();
 const noteController = new NoteController(new NoteService());
 
@@ -25,4 +24,4 @@ noteRouter.delete(
   noteController.deleteNote
 );
 
-export default noteRouter;
+module.exports = noteRouter;

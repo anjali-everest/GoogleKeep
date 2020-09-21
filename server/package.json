@@ -2,11 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "RESTful API for Google Keep Application using Nodejs, Express and PostgreSQL",
-  "type": "module",
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "start": "node --es-module-specifier-resolution=node server.js",
+    "start": "node server.js",
     "dev": "nodemon --es-module-specifier-resolution=node --watch server.js",
     "migrate": "node-pg-migrate"
   },

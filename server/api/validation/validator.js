@@ -1,7 +1,6 @@
-import pkg from "express-validator";
-const { body, param, validationResult } = pkg;
+const { body, param, validationResult } = require("express-validator"); // const  = pkg;
 
-export default class Validator {
+class Validator {
   static addNoteValidation = (req, res, next) => {
     body("title").optional().isString(), body("content").optional().isString();
     this.validate(req, res, next);
@@ -22,7 +21,7 @@ export default class Validator {
 
   static deleteNoteValidation = (req, res, next) => {
     param("id").not().isEmpty().isInt();
-    this.validate(req, res, next)
+    this.validate(req, res, next);
   };
 
   static validate = (req, res, next) => {
@@ -34,3 +33,5 @@ export default class Validator {
     return res.status(422).json(errors);
   };
 }
+
+module.exports = Validator;
