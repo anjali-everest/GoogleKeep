@@ -41,24 +41,24 @@ class NoteController {
   };
 
   updateNote = async (request, response) => {
-    const note = {
-      id: request.params.id,
-      title: request.body.title,
-      content: request.body.content,
-    };
     try {
+      const note = {
+        id: request.params.id,
+        title: request.body.title,
+        content: request.body.content,
+      };
       const isAvailable = await this.isNoteAvailable(note.id);
       if (!isAvailable) return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
-      const updatedFile = await this.#noteService.update(note);
-      return response.json(updatedFile);
+      const updatedNote = await this.#noteService.update(note);
+      return response.json(updatedNote);
     } catch (error) {
       return sendError(response, 500, error);
     }
   };
 
   deleteNote = async (request, response) => {
-    const id = request.params.id;
     try {
+      const id = request.params.id;
       const isAvailable = await this.isNoteAvailable(id);
       if (!isAvailable) return sendError(response, 400, NOTE_NOT_FOUND_WITH_ID);
       await this.#noteService.deleteOne(id);
