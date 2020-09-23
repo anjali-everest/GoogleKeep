@@ -12,7 +12,7 @@ services:
     ports:
       - 8080:8080
     env_file: ./server/.env
-    command: sh -c "npm run migrate up && npm start"
+    command: npm start
 
   client:
     build:
