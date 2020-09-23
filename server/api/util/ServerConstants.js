@@ -6,6 +6,7 @@ const INSERT_NOTE =
 const UPDATE_NOTE =
   "UPDATE notes SET title = $1,content = $2 WHERE id = $3 RETURNING *";
 const DELETE_NOTE = "DELETE FROM notes WHERE id = $1";
+
 //API response message constants
 const NOTES_RETRIEVED = "Notes retrieved!";
 const NOTES_NOT_FOUND = "Notes not found!";
