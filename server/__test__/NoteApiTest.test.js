@@ -2,15 +2,17 @@ import app from "../server";
 import request from "supertest";
 import pool from "../database/index";
 
-describe("Test the File endpoints", () => {
+describe("Notes API endpoints", () => {
   beforeEach(() => {
     return pool.query("START TRANSACTION");
   });
+
   afterEach(() => {
     return pool.query("ROLLBACK");
   });
-  describe("Testing the getNotes API", () => {
-    it("should get response as No notes found with status 404 when there are no notes available in db", async () => {
+
+  describe("getNotes API", () => {
+    it("should get response with status 200 when there are no notes available in db", async () => {
       const res = await request(app).get("/notes");
       expect(res.statusCode).toEqual(200);
     });
@@ -59,7 +61,7 @@ describe("Test the File endpoints", () => {
         title: "title",
         content: "content",
       };
-      const res = await request(app).post("/notes").send(newNote);
+      const res = await request(app).post("/notes").type('json').send(newNote);
       expect(res.status).toEqual(201);
       expect(res.body.length > 0).toBe(true);
       expect(res.body[0].title).toEqual(newNote.title);
@@ -84,7 +86,7 @@ describe("Test the File endpoints", () => {
             title: "updateTitle",
             content: "updateContent",
           };
-          const res = await request(app).put("/notes/1").send(noteToUpdate);
+          const res = await request(app).put("/notes/1").type('json').send(noteToUpdate);
           expect(res.statusCode).toEqual(200);
         });
     });
@@ -94,7 +96,7 @@ describe("Test the File endpoints", () => {
         title: "updateTitle",
         content: "updateContent",
       };
-      const res = await request(app).put("/notes/0").send(noteToUpdate);
+      const res = await request(app).put("/notes/0").type('json').send(noteToUpdate);
       expect(res.statusCode).toEqual(400);
       expect(res.body.error).toEqual("Note not found with given id");
     });
