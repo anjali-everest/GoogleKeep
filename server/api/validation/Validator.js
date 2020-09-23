@@ -1,4 +1,4 @@
-const { body, param, validationResult } = require("express-validator"); // const  = pkg;
+const { body, param, validationResult } = require("express-validator");
 
 class Validator {
   static applyAddNoteRules = () => {
