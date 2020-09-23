@@ -1,39 +1,38 @@
-const getSpy = jest.fn();
-const postSpy = jest.fn();
-const putSpy = jest.fn();
-const deleteSpy = jest.fn();
+const getMock = jest.fn();
+const postMock = jest.fn();
+const putMock = jest.fn();
+const deleteMock = jest.fn();
 
 jest.doMock("express", () => {
   return {
     Router() {
       return {
-        get: getSpy,
-        post: postSpy,
-        put: putSpy,
-        delete: deleteSpy,
+        get: getMock,
+        post: postMock,
+        put: putMock,
+        delete: deleteMock,
       };
     },
   };
 });
-
 jest.doMock("../../validation/validator");
 jest.doMock("../../service/NoteService");
 
-describe("test NoteRouter", () => {
+describe("NoteRouter", () => {
   beforeEach(() => {
     require("../NoteRoutes");
   });
 
   it("should call get notes route", () => {
-    expect(getSpy).toHaveBeenCalledTimes(2);
+    expect(getMock).toHaveBeenCalledTimes(2);
   });
   it("should call add note route", () => {
-    expect(postSpy).toHaveBeenCalledTimes(1);
+    expect(postMock).toHaveBeenCalledTimes(1);
   });
   it("should call update note route", () => {
-    expect(putSpy).toHaveBeenCalledTimes(1);
+    expect(putMock).toHaveBeenCalledTimes(1);
   });
   it("should call delete note route", () => {
-    expect(deleteSpy).toHaveBeenCalledTimes(1);
+    expect(deleteMock).toHaveBeenCalledTimes(1);
   });
 });

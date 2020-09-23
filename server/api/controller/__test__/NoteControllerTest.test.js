@@ -2,7 +2,7 @@ const NoteController = require("../NoteController");
 const NoteService = require("../../service/NoteService");
 const { NOTE_NOT_FOUND_WITH_ID } = require("../../util/ServerConstants");
 
-describe("Test NoteController functionality", () => {
+describe("NoteController", () => {
   const mockResponse = () => {
     const res = {};
     res.status = jest.fn().mockReturnValue(res);
@@ -25,10 +25,13 @@ describe("Test NoteController functionality", () => {
   const res = mockResponse();
   const req = mockRequest();
   const error = new Error();
+  const notes = [
+    { id: 1, title: "title", content: "content" },
+    { id: 2, title: "title", content: "content" },
+  ];
 
-  describe("test getNotes functionality", () => {
+  describe("getNotes of NoteController", () => {
     it("should get notes when called getNotes given service call returns list of notes", async () => {
-      const notes = [{}, {}];
       jest
         .spyOn(noteService, "getAll")
         .mockImplementation(() => Promise.resolve(notes));
@@ -46,14 +49,13 @@ describe("Test NoteController functionality", () => {
     });
   });
 
-  describe("test getOneNote functionality", () => {
+  describe("getOneNote of NoteController", () => {
     it("should get note when called getOneNote", async () => {
-      const note = [{}];
       jest
         .spyOn(noteService, "getOne")
-        .mockImplementation(() => Promise.resolve(note));
+        .mockImplementation(() => Promise.resolve(notes[0]));
       await noteController.getOneNote(req, res, null);
-      expect(res.json).toBeCalledWith(note);
+      expect(res.json).toBeCalledWith(notes[0]);
     });
 
     it("should get an error when called getOneNote given service call gets rejected ", async () => {
@@ -85,14 +87,13 @@ describe("Test NoteController functionality", () => {
     });
   });
 
-  describe("test addNote functionality", () => {
+  describe("addNote of NoteController", () => {
     it("should add note when called addNote", async () => {
-      const note = [{}];
       jest
         .spyOn(noteService, "insert")
-        .mockImplementation(() => Promise.resolve(note));
+        .mockImplementation(() => Promise.resolve(notes[0]));
       await noteController.addNote(req, res, null);
-      expect(res.json).toBeCalledWith(note);
+      expect(res.json).toBeCalledWith(notes[0]);
       expect(res.status).toBeCalledWith(201);
     });
 
@@ -117,14 +118,13 @@ describe("Test NoteController functionality", () => {
     });
   });
 
-  describe("test updateNote functionality", () => {
+  describe("updateNote of NoteController", () => {
     it("should respond with updated note when called updateNote", async () => {
-      const note = [{}];
       jest
         .spyOn(noteService, "update")
-        .mockImplementation(() => Promise.resolve(note));
+        .mockImplementation(() => Promise.resolve(notes[0]));
       await noteController.updateNote(req, res, null);
-      expect(res.json).toBeCalledWith(note);
+      expect(res.json).toBeCalledWith(notes[0]);
     });
 
     it("should respond with error when called updateNote given invalid note id", async () => {
@@ -161,12 +161,11 @@ describe("Test NoteController functionality", () => {
     });
   });
 
-  describe("test deleteNote functionality", () => {
+  describe("deleteNote of NoteController", () => {
     it("should respond with 204 status when called deleteNote", async () => {
-      const note = [{}];
       jest
         .spyOn(noteService, "getOne")
-        .mockImplementation(() => Promise.resolve(note));
+        .mockImplementation(() => Promise.resolve(notes[0]));
       jest
         .spyOn(noteService, "deleteOne")
         .mockImplementation(() => Promise.resolve());
@@ -184,10 +183,9 @@ describe("Test NoteController functionality", () => {
     });
 
     it("should respond with 500 status when called deleteNote when service call get rejected", async () => {
-      const note = [{}];
       jest
         .spyOn(noteService, "getOne")
-        .mockImplementation(() => Promise.resolve(note));
+        .mockImplementation(() => Promise.resolve(notes[0]));
       jest
         .spyOn(noteService, "deleteOne")
         .mockImplementation(() => Promise.reject(error));

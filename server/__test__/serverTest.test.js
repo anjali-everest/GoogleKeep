@@ -1,25 +1,27 @@
-const noteRouter = require("../api/routes/NoteRoutes");
+require("../api/routes/NoteRoutes");
+require("body-parser");
+require("cors");
 
-describe("should test the server configuration", () => {
-  const useSpy = jest.fn();
-  const listenSpy = jest.fn();
+const useMock = jest.fn();
+const listenMock = jest.fn();
 
-  jest.doMock("express", () => {
-    return () => ({
-      listen: listenSpy,
-      use: useSpy,
-    });
+jest.doMock("express", () => {
+  return () => ({
+    listen: listenMock,
+    use: useMock,
   });
+});
 
+describe("Server configuration", () => {
   beforeEach(() => {
     require("../server");
   });
-  
-  it("should initialize an express server", () => {
-    expect(listenSpy).toHaveBeenCalled();
+
+  it("should initialize an express server listening on a port", () => {
+    expect(listenMock).toHaveBeenCalled();
   });
 
-  it("should use a router", () => {
-    expect(useSpy).toHaveBeenCalledWith("/", noteRouter);
+  it("should test the server to use a router, cors, body-parser and body-parser url encoded", () => {
+    expect(useMock).toHaveBeenCalledTimes(4);
   });
 });
