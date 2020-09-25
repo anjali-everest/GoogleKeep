@@ -7,7 +7,7 @@ import {
   updateDeletingNoteId,
 } from "./../notesSlice";
 import { deleteOneNote } from "../thunksHandler";
-import deleteIcon from "./../../../styles/deleteIcon.png";
+import deleteIcon from "./../../../assets/deleteIcon.png";
 
 export const Note = (props) => {
   const { note } = props;

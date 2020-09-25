@@ -1,7 +1,7 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { getNotes, addNote, updateNote, deleteNote } from "../ApiHandler";
-import { NOTES_API_URL } from "../AppConstants";
+import { getNotes, addNote, updateNote, deleteNote } from "../apiHandler";
+import { NOTES_API_URL } from "../appConstants";
 
 describe("Home API Service", () => {
   let mock;

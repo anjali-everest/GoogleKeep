@@ -1,5 +1,5 @@
-import { KEEP } from "./../utils/AppConstants";
-import keepIcon from "./../styles/keepIcon.png";
+import { KEEP } from "../utils/appConstants";
+import keepIcon from "./../assets/keepIcon.png";
 import React from "react";
 
 const Header = () => {

@@ -1,4 +1,4 @@
-import { LOADING, SUCCEEDED, FAILED } from "../../utils/AppConstants";
+import { LOADING, SUCCEEDED, FAILED } from "../../utils/appConstants";
 
 export const addNote = (state, action) => {
   state.notes.push(action.payload);

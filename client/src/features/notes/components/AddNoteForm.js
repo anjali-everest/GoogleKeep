@@ -5,7 +5,7 @@ import ResizableTextarea from "./../../../components/ResizableTextArea";
 import {
   NOTE_CONTENT_PLACEHOLDER,
   NOTE_TITLE_PLACEHOLDER,
-} from "../../../utils/AppConstants";
+} from "../../../utils/appConstants";
 
 export const AddNoteForm = () => {
   const dispatch = useDispatch();
