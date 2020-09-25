@@ -43,7 +43,6 @@ describe("notesSlice tests", () => {
     });
 
     it("should update the given deletingNoteId when called updateDeletingNoteId", () => {
-      const action = { payload: 1 };
       const updatedState = reducer(initialState, updateDeletingNoteId(1));
 
       expect(updatedState.deletingNoteId).toEqual(1);

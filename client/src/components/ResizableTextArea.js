@@ -48,6 +48,7 @@ ResizableTextarea.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export default ResizableTextarea;

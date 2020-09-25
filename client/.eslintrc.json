@@ -11,6 +11,7 @@
         }
     },
     "extends": [
+        "prettier",
         "eslint:recommended",
         "plugin:react/recommended"
     ],
@@ -18,7 +19,7 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser":"babel-eslint",
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -27,9 +28,11 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
-      "indent": ["error", 2]
+        "prettier/prettier": "error",
+        "indent": ["error", 2]
     }
 }
