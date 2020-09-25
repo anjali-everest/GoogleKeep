@@ -12,7 +12,7 @@ import {
   updateStatusFailed,
   updateNote,
   deleteNote,
-} from "./notesActions";
+} from "../../actions/notesActions";
 import { initialState } from "./noteInitialState";
 
 const notesSlice = createSlice({
