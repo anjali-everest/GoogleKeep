@@ -14,7 +14,7 @@ class NoteService {
       const response = await db.query(GET_ALL_NOTES);
       return response.rows;
     } catch (e) {
-      return e;
+      throw e;
     }
   };
 
@@ -23,7 +23,7 @@ class NoteService {
       const response = await db.query(GET_ONE_NOTE, [id]);
       return response.rows;
     } catch (e) {
-      return e;
+      throw e;
     }
   };
 
@@ -32,7 +32,7 @@ class NoteService {
       const response = await db.query(INSERT_NOTE, [note.title, note.content]);
       return response.rows;
     } catch (e) {
-      return e;
+      throw e;
     }
   };
 
@@ -45,7 +45,7 @@ class NoteService {
       ]);
       return response.rows[0];
     } catch (e) {
-      return e;
+      throw e;
     }
   };
 
@@ -53,7 +53,7 @@ class NoteService {
     try {
       await db.query(DELETE_NOTE, [id]);
     } catch (e) {
-      return e;
+      throw e;
     }
   };
 }
