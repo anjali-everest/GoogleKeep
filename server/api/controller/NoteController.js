@@ -34,7 +34,7 @@ class NoteController {
         title,
         content,
       });
-      response.status(201).json(note);
+      response.status(201).json(note[0]);
     } catch (error) {
       return sendError(response, 500, error);
     }

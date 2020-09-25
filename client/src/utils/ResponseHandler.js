@@ -8,34 +8,30 @@ export default class ResponseHandler {
 
   static getResponse(response) {
     if (response.status === undefined) {
-      this.setError(response.message);
+      this.setError(response);
     } else if (
-      (response.status === 200 || response.status === 201) &&
-      response.data.status === "success"
+      response.status === 200 ||
+      response.status === 201 ||
+      response.status === 204
     ) {
-      if (response.data.data !== undefined) {
-        this.setSuccess(response.data.message, response.data.data);
-      } else {
-        this.setSuccess(response.data.message, []);
-      }
-    } else if (response.status === 400 && response.data.status === "success") {
-      this.setError(response.data.message);
+      const data = response.data ? response.data : null;
+      return this.setSuccess(data);
+    } else {
+      return this.setError(response);
     }
+  }
+
+  static setSuccess(responseData) {
     return {
-      status: this.type,
-      message: this.message,
-      data: this.data,
+      data: responseData,
+      type: "success",
     };
   }
 
-  static setSuccess(message, data) {
-    this.message = message;
-    this.data = data;
-    this.type = "success";
-  }
-
-  static setError(message) {
-    this.message = message;
-    this.type = "error";
+  static setError(error) {
+    return {
+      type: "error",
+      message: error,
+    };
   }
 }
