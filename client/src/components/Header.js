@@ -1,4 +1,4 @@
-import { KEEP } from "../utils/appConstants";
+import { KEEP } from "../constants/appConstants";
 import keepIcon from "./../assets/keepIcon.png";
 import React from "react";
 

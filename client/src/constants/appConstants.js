@@ -7,3 +7,6 @@ export const SUCCEEDED = "succeeded";
 export const FAILED = "failed";
 
 export const NOTES_API_URL = "http://localhost:8080/notes/";
+
+export const SUCCESS = "success";
+export const ERROR = "error";

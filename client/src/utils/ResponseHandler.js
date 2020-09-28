@@ -1,3 +1,5 @@
+import { SUCCESS, ERROR } from "../constants/appConstants";
+
 export default class ResponseHandler {
   constructor() {
     this.statusCode = null;
@@ -24,13 +26,13 @@ export default class ResponseHandler {
   static setSuccess(responseData) {
     return {
       data: responseData,
-      type: "success",
+      type: SUCCESS,
     };
   }
 
   static setError(error) {
     return {
-      type: "error",
+      type: ERROR,
       message: error,
     };
   }
