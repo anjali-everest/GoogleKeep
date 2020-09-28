@@ -4,40 +4,26 @@ import {
   addNote,
   updateNote,
   deleteNote,
-} from "../../utils/apiHandler";
-import ResponseHandler from "../../utils/ResponseHandler";
+} from "../../apiService/apiHandler";
 
 export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
-  const response = ResponseHandler.getResponse(await getNotes());
-  return response.data;
+  return getNotes();
 });
 
-export const addNewNote = createAsyncThunk(
-  "notes/addNewNote",
-  async (initialNote) => {
-    const addNoteResponse = ResponseHandler.getResponse(
-      await addNote(initialNote)
-    );
-    return addNoteResponse.data;
-  }
-);
+export const addNewNote = createAsyncThunk("notes/addNewNote", async (note) => {
+  return addNote(note);
+});
 
 export const updateOneNote = createAsyncThunk(
   "notes/updateNote",
-  async (updatedNote) => {
-    const updateNoteResponse = ResponseHandler.getResponse(
-      await updateNote(updatedNote)
-    );
-    return updateNoteResponse.data;
+  async (note) => {
+    return updateNote(note);
   }
 );
 
 export const deleteOneNote = createAsyncThunk(
   "notes/deleteNote",
   async (noteId) => {
-    const deleteNoteResponse = ResponseHandler.getResponse(
-      await deleteNote(noteId)
-    );
-    return deleteNoteResponse.data;
+    return deleteNote(noteId);
   }
 );
