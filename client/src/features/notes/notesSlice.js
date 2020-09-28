@@ -13,11 +13,11 @@ import {
   updateNote,
   deleteNote,
 } from "../../actions/notesActions";
-import { initialState } from "./noteInitialState";
+import { noteInitialState } from "./noteInitialState";
 
 const notesSlice = createSlice({
   name: "notes",
-  initialState,
+  initialState: noteInitialState,
   reducers: {
     updateIsEditingNote(state) {
       state.isEditingNote = !state.isEditingNote;

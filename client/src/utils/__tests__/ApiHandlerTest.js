@@ -86,9 +86,9 @@ describe("Home API Service", () => {
 
   describe("deleteNote", () => {
     it("should return response of status 200 when deleteNote is called", async () => {
-      mock.onDelete(NOTES_API_URL + "/1").reply(200);
+      mock.onDelete(NOTES_API_URL + "1").reply(204);
       await deleteNote(1).then((response) => {
-        expect(response.status).toEqual(200);
+        expect(response.status).toEqual(204);
       });
     });
 
@@ -100,7 +100,7 @@ describe("Home API Service", () => {
     });
 
     it("should return response of status 400 when updateNote is called deleteNote", async () => {
-      mock.onDelete(NOTES_API_URL + "/1").reply(400);
+      mock.onDelete(NOTES_API_URL + "1").reply(400);
       await deleteNote(1).then((response) => {
         expect(response.response.status).toEqual(400);
       });

@@ -9,19 +9,19 @@ import reducer, {
   selectNoteById,
   selectApiError,
 } from "../notesSlice.js";
-import { initialState } from "../noteInitialState";
+import { noteInitialState } from "../noteInitialState";
 import {
   fetchNotes,
   updateOneNote,
   deleteOneNote,
   addNewNote,
-} from "../thunkHandler";
+} from "../thunksHandler";
 
 describe("notesSlice tests", () => {
   describe("state", () => {
     it("should return the initial state on first run", () => {
-      const nextState = initialState;
-      const result = reducer(undefined, {});
+      const nextState = noteInitialState;
+      const result = reducer(noteInitialState, {});
       expect(result).toEqual(nextState);
     });
   });
@@ -29,7 +29,7 @@ describe("notesSlice tests", () => {
   describe("reducers and actions", () => {
     it("should update the isEditingNote when called updateIsEditingNote", () => {
       const updatedState = {
-        notes: reducer(initialState, updateIsEditingNote(initialState)),
+        notes: reducer(noteInitialState, updateIsEditingNote(noteInitialState)),
       };
 
       expect(selectIsEditingNote(updatedState)).toEqual(true);
@@ -37,20 +37,20 @@ describe("notesSlice tests", () => {
 
     it("should update the given editingNoteId when called updateEditingNoteId", () => {
       const updatedState = {
-        notes: reducer(initialState, updateEditingNoteId(1)),
+        notes: reducer(noteInitialState, updateEditingNoteId(1)),
       };
       expect(selectEditingNoteId(updatedState)).toEqual(1);
     });
 
     it("should update the given deletingNoteId when called updateDeletingNoteId", () => {
-      const updatedState = reducer(initialState, updateDeletingNoteId(1));
+      const updatedState = reducer(noteInitialState, updateDeletingNoteId(1));
 
       expect(updatedState.deletingNoteId).toEqual(1);
     });
 
     it("should properly set the state when fetch notes is pending", () => {
       const action = { type: fetchNotes.pending.type };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
 
       expect(selectApiStatus(updatedState)).toEqual("loading");
     });
@@ -64,7 +64,7 @@ describe("notesSlice tests", () => {
         type: fetchNotes.fulfilled.type,
         payload: fetchedNotes,
       };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
 
       expect(selectApiStatus(updatedState)).toEqual("succeeded");
       expect(selectAllNotes(updatedState)).toEqual(fetchedNotes);
@@ -75,14 +75,14 @@ describe("notesSlice tests", () => {
         type: fetchNotes.rejected.type,
         error: { message: "Failed to fetch" },
       };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
 
       expect(selectApiStatus(updatedState)).toEqual("failed");
       expect(selectApiError(updatedState)).toEqual("Failed to fetch");
     });
 
     it("should properly set the state when addNote is done", () => {
-      initialState.notes = [{ id: 1, title: "title", content: "content" }];
+      noteInitialState.notes = [{ id: 1, title: "title", content: "content" }];
       const noteToAdd = {
         id: 2,
         title: "secondNoteTitle",
@@ -92,13 +92,13 @@ describe("notesSlice tests", () => {
         type: addNewNote.fulfilled.type,
         payload: noteToAdd,
       };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
       expect(selectNoteById(updatedState, 2)).toEqual(noteToAdd);
       expect(selectAllNotes(updatedState).length).toEqual(2);
     });
 
     it("should properly set the state when updateNote is done", () => {
-      initialState.notes = [{ id: 1, title: "title", content: "content" }];
+      noteInitialState.notes = [{ id: 1, title: "title", content: "content" }];
       const noteToUpdate = {
         id: 1,
         title: "updatedTitle",
@@ -108,21 +108,21 @@ describe("notesSlice tests", () => {
         type: updateOneNote.fulfilled.type,
         payload: noteToUpdate,
       };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
       expect(selectNoteById(updatedState, 1)).toEqual(noteToUpdate);
     });
 
     it("should properly set the state when deleteNote is done", () => {
-      initialState.notes = [
+      noteInitialState.notes = [
         { id: 1, title: "title", content: "content" },
         { id: 2, title: "title2", content: "content2" },
         { id: 3, title: "title3", content: "content3" },
       ];
-      initialState.deletingNoteId = 2;
+      noteInitialState.deletingNoteId = 2;
       const action = {
         type: deleteOneNote.fulfilled.type,
       };
-      const updatedState = { notes: reducer(initialState, action) };
+      const updatedState = { notes: reducer(noteInitialState, action) };
       expect(selectNoteById(updatedState, 2)).toEqual(undefined);
     });
   });

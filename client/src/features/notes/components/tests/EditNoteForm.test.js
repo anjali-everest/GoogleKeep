@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { EditNoteForm } from "../EditNoteForm";
 import configureMockStore from "redux-mock-store";
-import { Provider } from "react-redux";
+import * as ReactRedux from "react-redux";
 import * as thunks from "../../thunksHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -20,10 +20,12 @@ describe("EditNoteForm tests", () => {
       deletingNoteId: null,
     },
   });
+  ReactRedux.useDispatch = jest.fn().mockImplementation(() => jest.fn());
+
   const editNoteForm = mount(
-    <Provider store={store}>
+    <ReactRedux.Provider store={store}>
       <EditNoteForm />
-    </Provider>
+    </ReactRedux.Provider>
   );
 
   it("should match the EditNoteForm snapshot", () => {

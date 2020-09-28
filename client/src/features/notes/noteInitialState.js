@@ -1,4 +1,4 @@
-export const initialState = {
+export const noteInitialState = {
   notes: [],
   status: "idle",
   error: null,

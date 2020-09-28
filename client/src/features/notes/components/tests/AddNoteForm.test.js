@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { AddNoteForm } from "../AddNoteForm";
 import configureMockStore from "redux-mock-store";
-import { Provider } from "react-redux";
+import * as ReactRedux from "react-redux";
 import * as thunks from "../../thunksHandler";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -17,10 +17,12 @@ describe("AddNoteForm tests", () => {
     isEditingNote: false,
     deletingNoteId: null,
   });
+  ReactRedux.useDispatch = jest.fn().mockImplementation(() => jest.fn());
+
   const addNoteForm = mount(
-    <Provider store={store}>
+    <ReactRedux.Provider store={store}>
       <AddNoteForm />
-    </Provider>
+    </ReactRedux.Provider>
   );
 
   it("should match the AddNoteForm snapshot", () => {
@@ -57,7 +59,9 @@ describe("AddNoteForm tests", () => {
   });
 
   it("should save the new note when clicked on save button", () => {
-    const addNewNoteSpy = jest.spyOn(thunks, "addNewNote");
+    const addNewNoteSpy = jest
+      .spyOn(thunks, "addNewNote")
+      .mockImplementationOnce(() => Promise.resolve({}));
 
     addNoteForm
       .find(".add-note-form .noteTitle")
