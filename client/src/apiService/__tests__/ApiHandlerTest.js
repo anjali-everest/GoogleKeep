@@ -1,8 +1,6 @@
-import mockAxios from "axios";
 import httpService from "../index";
 import { getNotes, addNote, updateNote, deleteNote } from "../apiHandler";
-import { NOTES_API_URL, SUCCESS } from "../../constants/appConstants";
-import { responseHandler } from "../interceptors";
+import { SUCCESS } from "../../constants/appConstants";
 jest.mock("../index");
 
 describe("Home API Service", () => {

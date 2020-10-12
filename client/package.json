@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "exact": "^0.8.0",
     "prettier": "^2.1.2",
