@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/", noteRouter);
+app.use("/api", noteRouter);
 const server = app.listen(process.env.PORT || 8080);
 
 module.exports = server;

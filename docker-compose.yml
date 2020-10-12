@@ -35,3 +35,13 @@ services:
     env_file: ./.env
     healthcheck:
       test: exit 0
+  
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - client
+    ports:
+      - 1234:1234
+    env_file: ./.env
