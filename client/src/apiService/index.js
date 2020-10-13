@@ -1,5 +1,5 @@
 import { responseErrorHandler, responseHandler } from "./interceptors";
-import axios from "./axios";
+import axios from "axios";
 
 axios.interceptors.response.use(responseHandler, responseErrorHandler);
 

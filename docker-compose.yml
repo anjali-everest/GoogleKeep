@@ -44,4 +44,3 @@ services:
       - client
     ports:
       - 1234:1234
-    env_file: ./.env
