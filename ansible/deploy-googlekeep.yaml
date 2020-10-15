@@ -1,0 +1,32 @@
+---
+    - name: Deploy GoogleKeep into host
+      hosts: all
+    
+      tasks:
+      - name: Install Packages
+        yum:
+          name: 
+            - curl
+            - git
+            - docker
+        become: yes
+
+      - name: Install docker-compose
+        remote_user: ubuntu
+        get_url: 
+          url : https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-Linux-x86_64
+          dest: /usr/bin/docker-compose
+          mode: 'u+x,g+x'
+        become: yes
+
+      - name: Clone the repository
+        command: git clone https://github.com/anjali-everest/GoogleKeep.git
+        become: yes
+      
+      - name: Start docker service
+        shell: service docker start
+        become: yes
+
+      - name: Start the application
+        shell: cd GoogleKeep && docker-compose up -d
+        become: yes
